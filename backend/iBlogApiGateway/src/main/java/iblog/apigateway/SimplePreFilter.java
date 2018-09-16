@@ -1,7 +1,6 @@
-package ishop.apigateway;
+package iblog.apigateway;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
@@ -10,7 +9,7 @@ import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 
 @Component
-public class SimplePostFilter extends ZuulFilter {
+public class SimplePreFilter extends ZuulFilter {
 
 	@Override
 	public boolean shouldFilter() {
@@ -22,10 +21,7 @@ public class SimplePostFilter extends ZuulFilter {
 	public Object run() throws ZuulException {
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
-		
-		HttpServletResponse response = ctx.getResponse();
-		
-		System.out.println(response.getStatus() + " request status of:  " +
+		System.out.println(request.getMethod() + " request to " +
 		request.getRequestURL().toString());
 		return null;
 	}
@@ -33,7 +29,7 @@ public class SimplePostFilter extends ZuulFilter {
 	@Override
 	public String filterType() {
 		// TODO Auto-generated method stub
-		return "post";
+		return "pre";
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package ishop.apigateway;
+package iblog.apigateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,9 +8,9 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @SpringBootApplication
 @EnableZuulProxy
 @EnableEurekaClient
-public class WebshopApiGatewayApplication {
+public class iBlogApiGatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebshopApiGatewayApplication.class, args);
+		SpringApplication.run(iBlogApiGatewayApplication.class, args);
 	}
 }

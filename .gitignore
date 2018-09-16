@@ -1,0 +1,16 @@
+/backend/iBlogApiGateway/.settings
+/backend/iBlogApiGateway/target
+/backend/iBlogApiGateway/.classpath
+/backend/iBlogApiGateway/.project
+/backend/iBlogApiRegistryService/.classpath
+/backend/iBlogApiRegistryService/.project
+/backend/iBlogApiRegistryService/.settings
+/backend/iBlogApiRegistryService/target
+/backend/iBlogSearchService/*.cmd
+/backend/iBlogSearchService/mvnw
+/backend/iBlogCoreService/.mvn/wrapper/*.jar
+.project
+.settings
+target
+.classpath
+*.jar

@@ -14,3 +14,7 @@
 target
 .classpath
 *.jar
+maven-wrapper.properties
+mvnw.cmd
+maven-wrapper.jar
+mvnw

@@ -3,7 +3,7 @@ server:
   
 zuul:
   prefix: /api
-  #sensitiveHeaders:
+  sensitiveHeaders:
   routes:
     oauth:
       path: /oauth/**

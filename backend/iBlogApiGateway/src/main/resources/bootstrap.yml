@@ -1,6 +1,6 @@
 spring:
   application: 
-    name: iShopApiGatewayService
+    name: iBlogApiGatewayService
   cloud:
     config:
       uri: http://localhost:8888 

@@ -1,5 +1,7 @@
 package iblog.core.model;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -17,6 +19,8 @@ public class BlogPost {
 	
 	private Blogger blogger;
 	
+	private LocalDateTime date = LocalDateTime.now();
+	
 	public BlogPost() {
 		
 	}
@@ -28,10 +32,12 @@ public class BlogPost {
 	 * @param blogger
 	 */
 	public BlogPost(Long postId, String title, String body, Status status, Blogger blogger) {
+		this.postId = postId;
 		this.title = title;
 		this.body = body;
 		this.status = status;
 		this.blogger = blogger;
+
 	}
 
 	public String getTitle() {
@@ -72,6 +78,14 @@ public class BlogPost {
 
 	public Long getPostId() {
 		return postId;
+	}
+
+	public LocalDateTime getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDateTime date) {
+		this.date = date;
 	}
 	
 	

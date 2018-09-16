@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 
 import org.springframework.core.annotation.Order;
 
-import ch.qos.logback.core.status.Status;
+import iblog.core.model.Status;
 
 public class BlogPostRequest {
 	@NotBlank(message = "Title cannot be empty!")

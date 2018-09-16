@@ -2,7 +2,7 @@ package iblog.core.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
+//@Document
 public class Blogger {
 	private Integer id;
 	private String name;
@@ -12,7 +12,8 @@ public class Blogger {
 	}
 	
 	public Blogger(Integer id, String name) {
-		
+		this.id = id;
+		this.name = name;
 	}
 	public Integer getId() {
 		return id;

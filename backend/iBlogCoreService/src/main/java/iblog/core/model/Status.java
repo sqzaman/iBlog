@@ -1,5 +1,5 @@
 package iblog.core.model;
 
 public enum Status {
-	APPROVED, REJECTED, PENDING
+	CREATED, APPROVED, REJECTED, PENDING
 }

@@ -3,13 +3,13 @@ server:
   
 zuul:
   prefix: /api
-  sensitiveHeaders:
+  #sensitiveHeaders:
   routes:
     oauth:
       path: /oauth/**
       serviceId: iBlogOAuth2Service 
     core:
-      path: /core/**
+      path: /blog/**
       serviceId: iBlogCoreService
     user:
       path: /user/**

@@ -1,20 +1,15 @@
 package iblog.core.model;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-@Document
+
+
 public class BlogPost {
-	@Id
+
 	private Long postId;
 	
 	private String title;
@@ -25,12 +20,11 @@ public class BlogPost {
 	private Status status;
 	
 	private Blogger blogger;
-
+	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss.SSS")
 	private Date postDate = new Date();
-
 	
-	private boolean pushedToKafka = false;
+	private boolean sentToSearchService = false;
 	
 	public BlogPost() {
 		
@@ -91,21 +85,30 @@ public class BlogPost {
 		return postId;
 	}
 
+
+
 	public Date getPostDate() {
 		return postDate;
 	}
 
-	public void setPostDate(Date date) {
-		this.postDate = date;
+	public void setPostDate(Date postDate) {
+		this.postDate = postDate;
 	}
 
-	public boolean isPushedToKafka() {
-		return pushedToKafka;
+	public boolean isSentToSearchService() {
+		return sentToSearchService;
 	}
 
-	public void setPushedToKafka(boolean pushedToKafka) {
-		this.pushedToKafka = pushedToKafka;
+	public void setSentToSearchService(boolean sentToSearchService) {
+		this.sentToSearchService = sentToSearchService;
 	}
 
+	@Override
+	public String toString() {
+		return "BlogPost [postId=" + postId + ", title=" + title + ", body=" + body + ", status=" + status
+				+ ", blogger=" + blogger + ", date=" + postDate + ", sentToSearchService=" + sentToSearchService + "]";
+	}
+	
+	
 
 }

@@ -19,7 +19,7 @@ public class BlogPost {
 	
 	private Status status;
 	
-	private Blogger blogger;
+	private Author author;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss.SSS")
 	private Date postDate = new Date();
@@ -36,12 +36,12 @@ public class BlogPost {
 	 * @param status
 	 * @param blogger
 	 */
-	public BlogPost(Long postId, String title, String body, Status status, Blogger blogger) {
+	public BlogPost(Long postId, String title, String body, Status status, Author author) {
 		this.postId = postId;
 		this.title = title;
 		this.body = body;
 		this.status = status;
-		this.blogger = blogger;
+		this.author = author;
 
 	}
 
@@ -69,12 +69,14 @@ public class BlogPost {
 		this.status = status;
 	}
 
-	public Blogger getBlogger() {
-		return blogger;
+
+
+	public Author getAuthor() {
+		return author;
 	}
 
-	public void setBlogger(Blogger blogger) {
-		this.blogger = blogger;
+	public void setAuthor(Author author) {
+		this.author = author;
 	}
 
 	public void setPostId(Long postId) {
@@ -106,7 +108,7 @@ public class BlogPost {
 	@Override
 	public String toString() {
 		return "BlogPost [postId=" + postId + ", title=" + title + ", body=" + body + ", status=" + status
-				+ ", blogger=" + blogger + ", date=" + postDate + ", sentToSearchService=" + sentToSearchService + "]";
+				+ ", author=" + author + ", date=" + postDate + ", sentToSearchService=" + sentToSearchService + "]";
 	}
 	
 	

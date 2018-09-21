@@ -1,38 +1,31 @@
 package iblog.core.model;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
-
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Document
-public class BlogPost {
+public class Article {
 	@Id
 	private Long postId;
 	
 	private String title;
 
-
 	private String body;
 	
 	private Status status;
 	
-	private Blogger blogger;
+	private Author blogger;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss.SSS")
 	private Date postDate = new Date();
 
-	
+	@JsonIgnore
 	private boolean pushedToKafka = false;
 	
-	public BlogPost() {
+	public Article() {
 		
 	}
 
@@ -42,7 +35,7 @@ public class BlogPost {
 	 * @param status
 	 * @param blogger
 	 */
-	public BlogPost(Long postId, String title, String body, Status status, Blogger blogger) {
+	public Article(Long postId, String title, String body, Status status, Author blogger) {
 		this.postId = postId;
 		this.title = title;
 		this.body = body;
@@ -75,11 +68,11 @@ public class BlogPost {
 		this.status = status;
 	}
 
-	public Blogger getBlogger() {
+	public Author getBlogger() {
 		return blogger;
 	}
 
-	public void setBlogger(Blogger blogger) {
+	public void setBlogger(Author blogger) {
 		this.blogger = blogger;
 	}
 

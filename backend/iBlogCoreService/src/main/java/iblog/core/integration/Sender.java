@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import iblog.core.model.BlogPost;
+import iblog.core.model.Article;
 
 @Service
 public class Sender {
@@ -18,9 +18,9 @@ public class Sender {
   private String blogPostTopic;
 
   @Autowired
-  private KafkaTemplate<String, BlogPost> kafkaTemplate;
+  private KafkaTemplate<String, Article> kafkaTemplate;
 
-  public void send(BlogPost blogPost) {
+  public void send(Article blogPost) {
     LOGGER.info("sending blogPost='{}'", blogPost.toString());
     kafkaTemplate.send(blogPostTopic, blogPost);
   }

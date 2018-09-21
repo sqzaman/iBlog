@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import iblog.customers.dto.AccountDto;
 import iblog.customers.payload.AccountRequest;
+import iblog.user.dto.AccountDto;
 
 @Component
 public class OAuth2Proxy {
@@ -27,7 +27,7 @@ public class OAuth2Proxy {
 		return result;
 	};
 	
-	@FeignClient("iShopOAuth2Service")
+	@FeignClient("iBlogOAuth2Service")
 	interface OAuth2FeignClient {
 		
 		@RequestMapping(value="/auth/signup",method=RequestMethod.POST)

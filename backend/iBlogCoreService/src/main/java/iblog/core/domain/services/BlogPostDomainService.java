@@ -6,8 +6,8 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import iblog.core.model.BlogPost;
-import iblog.core.model.Blogger;
+import iblog.core.model.Article;
+import iblog.core.model.Author;
 import iblog.core.payload.BlogPostRequest;
 import iblog.core.seq.exception.SequenceException;
 import iblog.core.seq.model.SequenceId;
@@ -25,11 +25,11 @@ public class BlogPostDomainService {
 	 @Autowired 
 	 private MongoOperations mongo;
 	
-	public BlogPost createNewBlogPost(BlogPostRequest blogPostRequest) {
-		Blogger b = new Blogger(1, "Zaman"); // need to change later
+	public Article createNewBlogPost(BlogPostRequest blogPostRequest) {
+		Author b = new Author(1, "Zaman"); // need to change later
 		Long blogId = getNextSequenceId(HOSTING_SEQ_KEY);
 
-		return new BlogPost(blogId, blogPostRequest.getTitle(), blogPostRequest.getBody(), blogPostRequest.getStatus() , b);
+		return new Article(blogId, blogPostRequest.getTitle(), blogPostRequest.getBody(), blogPostRequest.getStatus() , b);
 	}
 	
 	@Transactional

@@ -1,4 +1,4 @@
-package iblog.customers.dto;
+package iblog.user.dto;
 
 public class AccountDto {
 	

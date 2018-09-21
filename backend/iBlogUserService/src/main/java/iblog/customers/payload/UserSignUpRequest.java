@@ -5,7 +5,7 @@ import javax.validation.constraints.*;
 import org.springframework.core.annotation.Order;
 
 
-public class CustomerSignUpRequest {
+public class UserSignUpRequest {
 	
     @NotBlank(message = "Firstname cannot be empty!")
     @Size(min = 4, max = 40)
@@ -25,10 +25,6 @@ public class CustomerSignUpRequest {
     @Size(max = 40)
     @Email
     private String email;
-    
-    @NotBlank(message = "Phone cannot be empty!")
-    @Size(max = 40)
-    private String phone;
 
     @NotBlank(message = "Password cannot be empty!")
     @Size(min = 6, max = 20)
@@ -66,14 +62,6 @@ public class CustomerSignUpRequest {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
 	}
 
 	public String getPassword() {

@@ -20,7 +20,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import iblog.core.model.BlogPost;
+import iblog.core.model.Article;
 
 @Configuration
 public class SenderConfig {
@@ -39,12 +39,12 @@ public class SenderConfig {
 	}
 
 	@Bean
-	public ProducerFactory<String, BlogPost> producerFactory() {
+	public ProducerFactory<String, Article> producerFactory() {
 		return new DefaultKafkaProducerFactory<>(producerConfigs());
 	}
 
 	@Bean
-	public KafkaTemplate<String, BlogPost> kafkaTemplate() {
+	public KafkaTemplate<String, Article> kafkaTemplate() {
 		return new KafkaTemplate<>(producerFactory());
 	}
 

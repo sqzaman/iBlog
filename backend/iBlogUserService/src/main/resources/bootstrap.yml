@@ -1,6 +1,6 @@
 spring:
   application: 
-    name: iShopCustomerService
+    name: iBlogUserService
   #cloud:
   #  config:
   #    uri: http://localhost:8888

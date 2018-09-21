@@ -6,7 +6,16 @@ kafka:
   topic:
     blogpost_topic: iblog_post
 
+elasticsearch:
+  clustername: elasticsearch
+  host: localhost
+  port: 9200
 
+
+spring:
+  data:
+    elasticsearch: 
+      cluster-nodes: localhost:9200
 ## App Properties
 app:
  jwtSecret: JWTSuperSecretKey

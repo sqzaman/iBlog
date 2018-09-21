@@ -1,16 +1,16 @@
 package iblog.core.model;
 
 
-public class Blogger {
+public class Author {
 
 	private Integer id;
 	private String name;
 	
-	public Blogger() {
+	public Author() {
 		
 	}
 	
-	public Blogger(Integer id, String name) {
+	public Author(Integer id, String name) {
 		this.id = id;
 		this.name = name;
 	}

@@ -10,7 +10,7 @@ import iblog.core.model.Status;
 
 public class BlogPostRequest {
 	@NotBlank(message = "Title cannot be empty!")
-	@Size(min = 15, max = 1000)
+	@Size(min = 5, max = 1000)
 	@Order(1)
 	private String title;
 
@@ -19,9 +19,6 @@ public class BlogPostRequest {
 	@Order(2)
 	private String body;
 
-	@NotBlank(message = "Status cannot be empty!")
-	@Order(3)
-	private Status status;
 	
 	public BlogPostRequest() {
 		
@@ -43,13 +40,6 @@ public class BlogPostRequest {
 		this.body = body;
 	}
 
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
 	
 
 }

@@ -12,7 +12,7 @@ export class UserProfileService {
   }
 
   getProfile(): Observable<Object> {
-    return this.http.get(this.globals.BASE_API_URL + "customer/get");
+    return this.http.get(this.globals.BASE_API_URL + "user/get");
   }
 
   updateProfile(userProfile: Object ): Observable<Object> {

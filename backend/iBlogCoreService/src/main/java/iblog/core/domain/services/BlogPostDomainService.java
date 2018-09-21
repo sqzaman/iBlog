@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import iblog.core.model.Article;
 import iblog.core.model.Author;
+import iblog.core.model.Status;
 import iblog.core.payload.BlogPostRequest;
 import iblog.core.seq.exception.SequenceException;
 import iblog.core.seq.model.SequenceId;
@@ -29,7 +30,7 @@ public class BlogPostDomainService {
 		Author b = new Author(1, "Zaman"); // need to change later
 		Long blogId = getNextSequenceId(HOSTING_SEQ_KEY);
 
-		return new Article(blogId, blogPostRequest.getTitle(), blogPostRequest.getBody(), blogPostRequest.getStatus() , b);
+		return new Article(blogId, blogPostRequest.getTitle(), blogPostRequest.getBody(), Status.CREATED , b);
 	}
 	
 	@Transactional

@@ -4,6 +4,9 @@ spring:
       host: localhost
       port: 27017
       database: blog_post_microservice  
+  security:
+    basic:
+      enabled: false
     
 logging:
   level:
@@ -24,3 +27,5 @@ kafka:
 app:
  jwtSecret: JWTSuperSecretKey
  jwtExpirationInMs: 604800000
+ 
+

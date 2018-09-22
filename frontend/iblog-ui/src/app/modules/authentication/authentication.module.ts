@@ -9,6 +9,8 @@ import { ProfileEditComponent } from './components/profile/profile-edit/profile-
 import { ProfileOverviewComponent } from './components/profile/profile-overview/profile-overview.component';
 import { ProfileBillingComponent } from './components/profile/profile-billing/profile-billing.component';
 import { ProfileShippingComponent } from './components/profile/profile-shipping/profile-shipping.component';
+import { MyArticlesComponent } from './components/profile/my-articles/my-articles.component';
+import { AddNewArtilceComponent } from './components/profile/add-new-artilce/add-new-artilce.component';
 
 @NgModule({
   imports: [
@@ -16,6 +18,6 @@ import { ProfileShippingComponent } from './components/profile/profile-shipping/
     CommonModule,
     RouterModule
   ],
-  declarations: [SignupComponent, SigninComponent, ProfileComponent, ProfileEditComponent, ProfileOverviewComponent, ProfileBillingComponent, ProfileShippingComponent]
+  declarations: [SignupComponent, SigninComponent, ProfileComponent, ProfileEditComponent, ProfileOverviewComponent, ProfileBillingComponent, ProfileShippingComponent, MyArticlesComponent, AddNewArtilceComponent]
 })
 export class AuthenticationModule { }

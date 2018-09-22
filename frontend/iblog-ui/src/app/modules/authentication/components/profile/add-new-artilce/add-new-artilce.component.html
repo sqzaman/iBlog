@@ -1,0 +1,60 @@
+
+<div class="container">
+  <br>
+
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <header class="card-header">
+          <h4 class="card-title mt-2">New Article</h4>
+        </header>
+        <article class="card-body">
+          <!--<div [hidden]="submitted" style="width: 300px;">-->
+              <div [hidden]="!failed" class="alert alert-danger" role="alert">
+                  <p  [innerHtml]="message"></p>
+                </div>
+                <div [hidden]="!success" class="alert alert-success" role="alert">
+                    {{ message }}
+                  </div>
+            <form (ngSubmit)="onSubmit()">
+              <div class="form-row">
+                <div class="col form-group">
+                  <label>Title</label>
+                  <input type="text" class="form-control" required [(ngModel)]="article.title" name="title">
+                </div>
+                <!-- form-group end.// -->
+              </div>
+              <!-- form-row end.// -->
+      
+              <div class="form-row">
+                <div class="col form-group">
+                  <label>Description</label>
+                  <textarea [(ngModel)]="article.body" id="body" name="body" cols="40" rows="4" class="form-control"></textarea>
+                </div>
+                <!-- form-group end.// -->
+              </div>
+              <!-- form-group end.// -->
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block"> Register </button>
+              </div>
+             
+            </form>
+          <!--</div>-->
+          <div [hidden]="!submitted">
+              <h4>You submitted successfully!</h4>
+              <button class="btn btn-success" (click)="newCustomer()">Add</button>
+            </div>
+        </article>
+
+      </div>
+      <!-- card.// -->
+    </div>
+    <!-- col.//-->
+
+  </div>
+  <!-- row.//-->
+
+
+</div>
+<!--container end.//-->
+

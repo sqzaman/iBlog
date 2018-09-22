@@ -21,6 +21,11 @@ import { AdminProductComponent } from './modules/admin/admin-product/admin-produ
 import { NewCategoryComponent } from './modules/admin/admin-product-category/new-category/new-category.component';
 import { NewProductComponent } from './modules/admin/admin-product/new-product/new-product.component';
 import { UploadProductImageComponent } from './modules/admin/admin-product/upload-product-image/upload-product-image.component';
+
+import { MyArticlesComponent } from './modules/authentication/components/profile/my-articles/my-articles.component';
+import { AddNewArtilceComponent } from './modules/authentication/components/profile/add-new-artilce/add-new-artilce.component';
+
+
 const routes: Routes = [
     {
         path: 'home',
@@ -63,6 +68,9 @@ const routes: Routes = [
             { path: 'edit', component: ProfileEditComponent },
             { path: 'billing-address', component: ProfileBillingComponent },
             { path: 'shipping-address', component: ProfileShippingComponent },
+
+            { path: 'my-articles', component: MyArticlesComponent },
+            { path: 'add-new-article', component: AddNewArtilceComponent },
             { path: '', redirectTo:'overview', pathMatch:"full" }
         ]
     }

@@ -20,7 +20,7 @@ server:
 kafka:
   bootstrap-servers: localhost:9092
   topic:
-    blogpost_topic: iblog_post
+    blogpost_topic: iblog_post_latest
 
   
 ## App Properties

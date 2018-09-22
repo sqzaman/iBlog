@@ -1,4 +1,4 @@
-package iblog.blog;
+package iblog;
 
 import javax.annotation.PostConstruct;
 

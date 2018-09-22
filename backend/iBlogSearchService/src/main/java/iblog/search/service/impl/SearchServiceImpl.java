@@ -1,4 +1,4 @@
-package iblog.blog.service.impl;
+package iblog.search.service.impl;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import iblog.blog.model.Article;
-import iblog.blog.repository.ArticleRepository;
-import iblog.blog.service.SearchService;
+import iblog.search.model.Article;
+import iblog.search.repository.ArticleRepository;
+import iblog.search.service.SearchService;
 
 @Service
 public class SearchServiceImpl implements SearchService {

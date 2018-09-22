@@ -12,6 +12,8 @@ import iblog.core.model.Status;
 import iblog.core.payload.ApiResponse;
 import iblog.core.payload.BlogPostRequest;
 import iblog.core.repository.BlogPostRepository;
+import iblog.core.util.Helper;
+import iblog.security.UserPrincipal;
 
 @Service
 public class BlogPostService {
@@ -29,26 +31,29 @@ public class BlogPostService {
 	 * @return
 	 */
 	@Transactional
-	public ResponseEntity<?> createNewBlogPost(BlogPostRequest blogPostRequest){
-		Article blogPost = blogPostRepository.save(blogPostDomainService.createNewBlogPost(blogPostRequest)); 
+	public ResponseEntity<?> createNewBlogPost(BlogPostRequest blogPostRequest, UserPrincipal currentUser){
+		Article blogPost = blogPostRepository.save(blogPostDomainService.createNewBlogPost(blogPostRequest, currentUser)); 
 		return new ResponseEntity<Article>(blogPost, HttpStatus.OK); 		
 	}
 	
 	@Transactional
-	public ResponseEntity<?> approveBlogPost(Long postId, Status status){
+	public ResponseEntity<?> approveBlogPost(Long postId, Integer status){
 		
 		Article blogPost = blogPostRepository.findById(postId).orElse(null);
 		Article updateResult = null;
 		if (blogPost == null) {
 			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Customer not found!"), HttpStatus.BAD_REQUEST);
 		}
+		
+		
 
-		blogPost.setStatus(status);
+		blogPost.setStatus(Helper.fromIntStatus(status));
 		updateResult = blogPostRepository.save(blogPost);
 
 		if (updateResult != null) {			
-			if(status == Status.APPROVED) {
+			if(Helper.fromIntStatus(status) == Status.APPROVED) {
 				try {
+					System.out.println("...............Sending to kafka................");
 					kafkaSender.send(blogPost);
 					// changing the status
 					blogPost.setPushedToKafka(true);

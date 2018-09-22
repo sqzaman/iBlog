@@ -4,7 +4,7 @@ server:
 kafka:
   bootstrap-servers: localhost:9092
   topic:
-    blogpost_topic: iblog_post
+    blogpost_topic: iblog_post_latest
 
 elasticsearch:
   clustername: elasticsearch
@@ -16,6 +16,13 @@ spring:
   data:
     elasticsearch: 
       cluster-nodes: localhost:9200
+  kafka:
+    consumer:
+      properties:
+        spring:
+          json:
+            trusted:
+              packages:iblog.core.model.*
 ## App Properties
 app:
  jwtSecret: JWTSuperSecretKey

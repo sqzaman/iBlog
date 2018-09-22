@@ -1,4 +1,4 @@
-package iblog.blog.post.consuner;
+package iblog.search.post.consuner;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 
-import iblog.core.model.BlogPost;
+import iblog.core.model.Article;
 
 
 public class Receiver {
@@ -20,7 +20,7 @@ public class Receiver {
   }
 
   @KafkaListener(topics = "${kafka.topic.blogpost_topic}")
-  public void receive(BlogPost blogPost) {
+  public void receive(Article blogPost) {
     LOGGER.info("received car='{}'", blogPost.toString());
     System.out.println("Received:"+ blogPost);
     latch.countDown();

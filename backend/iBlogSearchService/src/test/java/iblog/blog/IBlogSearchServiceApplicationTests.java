@@ -20,10 +20,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
-
-import iblog.blog.model.Article;
-import iblog.blog.service.SearchService;
+import iblog.search.model.Article;
+import iblog.search.service.SearchService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

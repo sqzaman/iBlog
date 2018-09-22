@@ -1,3 +1,4 @@
+package iblog.search.config;
 /*
 package iblog.blog.config;
 

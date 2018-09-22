@@ -1,4 +1,4 @@
-package iblog.blog.model;
+package iblog.search.model;
 
 
 import java.util.Date;

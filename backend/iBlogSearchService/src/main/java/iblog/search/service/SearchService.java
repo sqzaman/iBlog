@@ -1,11 +1,11 @@
-package iblog.blog.service;
+package iblog.search.service;
 
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
-import iblog.blog.model.Article;
+import iblog.search.model.Article;
 
 public interface SearchService {
 	Article save(Article article);

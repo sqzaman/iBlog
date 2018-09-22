@@ -1,13 +1,13 @@
-package iblog.blog.repository;
+package iblog.search.repository;
 
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+
+import iblog.search.model.Article;
 
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import iblog.blog.model.Article;
 
 public interface ArticleRepository extends ElasticsearchRepository<Article, Long> {
 	Page<Article> findByAuthor(String author, Pageable pageable);

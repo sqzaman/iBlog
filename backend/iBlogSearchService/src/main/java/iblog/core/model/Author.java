@@ -1,23 +1,20 @@
 package iblog.core.model;
 
-
 public class Author {
-
-	private Integer id;
+	private Long id;
 	private String name;
 	
-	public Author() {
-		
+	public Author() {		
 	}
 	
-	public Author(Integer id, String name) {
+	public Author(Long id, String name) {
 		this.id = id;
 		this.name = name;
 	}
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -29,8 +26,9 @@ public class Author {
 
 	@Override
 	public String toString() {
-		return "Blogger [id=" + id + ", name=" + name + "]";
+		return "Author [id=" + id + ", name=" + name + "]";
 	}
+	
 	
 
 }

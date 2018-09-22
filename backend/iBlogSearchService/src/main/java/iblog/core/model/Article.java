@@ -1,32 +1,31 @@
 package iblog.core.model;
 
-import java.time.LocalDateTime;
 import java.util.Date;
+import org.springframework.data.annotation.Id;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
-
-public class BlogPost {
+public class Article {
 
 	private Long postId;
 	
 	private String title;
 
-
 	private String body;
 	
 	private Status status;
 	
-	private Author author;
-	
+	private Author blogger;
+
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss.SSS")
 	private Date postDate = new Date();
+
+	@JsonIgnore
+	private boolean pushedToKafka = false;
 	
-	private boolean sentToSearchService = false;
-	
-	public BlogPost() {
+	public Article() {
 		
 	}
 
@@ -36,12 +35,12 @@ public class BlogPost {
 	 * @param status
 	 * @param blogger
 	 */
-	public BlogPost(Long postId, String title, String body, Status status, Author author) {
+	public Article(Long postId, String title, String body, Status status, Author blogger) {
 		this.postId = postId;
 		this.title = title;
 		this.body = body;
 		this.status = status;
-		this.author = author;
+		this.blogger = blogger;
 
 	}
 
@@ -69,14 +68,12 @@ public class BlogPost {
 		this.status = status;
 	}
 
-
-
-	public Author getAuthor() {
-		return author;
+	public Author getBlogger() {
+		return blogger;
 	}
 
-	public void setAuthor(Author author) {
-		this.author = author;
+	public void setBlogger(Author blogger) {
+		this.blogger = blogger;
 	}
 
 	public void setPostId(Long postId) {
@@ -87,30 +84,26 @@ public class BlogPost {
 		return postId;
 	}
 
-
-
 	public Date getPostDate() {
 		return postDate;
 	}
 
-	public void setPostDate(Date postDate) {
-		this.postDate = postDate;
+	public void setPostDate(Date date) {
+		this.postDate = date;
 	}
 
-	public boolean isSentToSearchService() {
-		return sentToSearchService;
+	public boolean isPushedToKafka() {
+		return pushedToKafka;
 	}
 
-	public void setSentToSearchService(boolean sentToSearchService) {
-		this.sentToSearchService = sentToSearchService;
+	public void setPushedToKafka(boolean pushedToKafka) {
+		this.pushedToKafka = pushedToKafka;
 	}
+
 
 	@Override
 	public String toString() {
-		return "BlogPost [postId=" + postId + ", title=" + title + ", body=" + body + ", status=" + status
-				+ ", author=" + author + ", date=" + postDate + ", sentToSearchService=" + sentToSearchService + "]";
+		return "Article [postId=" + postId + ", title=" + title + ", body=" + body + ", status=" + status + ", blogger="
+				+ blogger + ", postDate=" + postDate + ", pushedToKafka=" + pushedToKafka + "]";
 	}
-	
-	
-
 }

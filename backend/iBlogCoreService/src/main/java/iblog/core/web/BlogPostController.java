@@ -25,13 +25,13 @@ public class BlogPostController {
 	@PostMapping("/create")
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> createArticle(@Valid @RequestBody BlogPostRequest blogPostRequest, @CurrentUser UserPrincipal currentUser) {
-		return blogPostService.createNewBlogPost(blogPostRequest);
+		return blogPostService.createNewBlogPost(blogPostRequest, currentUser);
 	}
 	
 	@PostMapping("/approve/{postId}/{status}")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> approveArticle(@PathVariable(name = "postId", required = true) final Long postId,
-			@PathVariable(name = "status", required = true) final Status status, @CurrentUser UserPrincipal currentUser) {
+			@PathVariable(name = "status", required = true) final Integer status, @CurrentUser UserPrincipal currentUser) {
 		return blogPostService.approveBlogPost(postId, status);
 	}
 	

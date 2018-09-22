@@ -12,8 +12,7 @@ import iblog.core.model.Status;
 import iblog.core.payload.BlogPostRequest;
 import iblog.core.seq.exception.SequenceException;
 import iblog.core.seq.model.SequenceId;
-
-
+import iblog.security.UserPrincipal;
 
 import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
@@ -26,8 +25,8 @@ public class BlogPostDomainService {
 	 @Autowired 
 	 private MongoOperations mongo;
 	
-	public Article createNewBlogPost(BlogPostRequest blogPostRequest) {
-		Author b = new Author(1, "Zaman"); // need to change later
+	public Article createNewBlogPost(BlogPostRequest blogPostRequest, UserPrincipal currentUser) {
+		Author b = new Author(currentUser.getId(), currentUser.getName()); // need to change later
 		Long blogId = getNextSequenceId(HOSTING_SEQ_KEY);
 
 		return new Article(blogId, blogPostRequest.getTitle(), blogPostRequest.getBody(), Status.CREATED , b);

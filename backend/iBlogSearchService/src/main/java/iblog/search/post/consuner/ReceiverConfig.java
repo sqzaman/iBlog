@@ -1,4 +1,4 @@
-package iblog.blog.post.consuner;
+package iblog.search.post.consuner;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +15,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
-import iblog.core.model.BlogPost;
+import iblog.core.model.Article;
 
 @Configuration
 @EnableKafka
@@ -32,20 +32,20 @@ public class ReceiverConfig {
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
     props.put(ConsumerConfig.GROUP_ID_CONFIG, "json");
     props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-    props.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
+    props.put(JsonDeserializer.TRUSTED_PACKAGES, "iblog.core.model.*");
 
     return props;
   }
 
   @Bean
-  public ConsumerFactory<String, BlogPost> consumerFactory() {
+  public ConsumerFactory<String, Article> consumerFactory() {
     return new DefaultKafkaConsumerFactory<>(consumerConfigs(), new StringDeserializer(),
-        new JsonDeserializer<>(BlogPost.class));
+        new JsonDeserializer<>(Article.class));
   }
 
   @Bean
-  public ConcurrentKafkaListenerContainerFactory<String, BlogPost> kafkaListenerContainerFactory() {
-    ConcurrentKafkaListenerContainerFactory<String, BlogPost> factory =
+  public ConcurrentKafkaListenerContainerFactory<String, Article> kafkaListenerContainerFactory() {
+    ConcurrentKafkaListenerContainerFactory<String, Article> factory =
         new ConcurrentKafkaListenerContainerFactory<>();
     factory.setConsumerFactory(consumerFactory());
 

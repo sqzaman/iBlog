@@ -7,7 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 
-@Document(indexName = "blog", type = "articles")
+@Document(indexName = "article_index", type = "article", shards = 1, replicas = 0, refreshInterval = "-1")
 public class Article {
 	@Id
     private Long id;

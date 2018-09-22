@@ -6,23 +6,10 @@ kafka:
   topic:
     blogpost_topic: iblog_post_latest
 
-elasticsearch:
-  clustername: elasticsearch
-  host: localhost
-  port: 9200
-
-
 spring:
   data:
     elasticsearch: 
-      cluster-nodes: localhost:9200
-  kafka:
-    consumer:
-      properties:
-        spring:
-          json:
-            trusted:
-              packages:iblog.core.model.*
+      cluster-nodes: localhost:9300
 ## App Properties
 app:
  jwtSecret: JWTSuperSecretKey

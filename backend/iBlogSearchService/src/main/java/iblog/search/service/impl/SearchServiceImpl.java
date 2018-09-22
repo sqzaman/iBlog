@@ -48,4 +48,14 @@ public class SearchServiceImpl implements SearchService {
 		return articleRepository.findByTitle(title);
 	}
 
+	@Override
+	public void putArticleToElasticSearchIndex(iblog.core.model.Article art) {
+		// TODO Auto-generated method stub
+		System.out.println(String.format("Article: %d started indexing", art.getId()));
+		Article article = new Article(art.getId(), art.getTitle(), art.getBody(), art.getAuthor().getName(), art.getPostDate());
+		articleRepository.save(article);
+		System.out.println(String.format("Article: %d finished indexing", art.getId()));
+	}
+
+
 }

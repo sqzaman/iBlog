@@ -1,7 +1,7 @@
 package iblog.core.model;
 
 import java.util.Date;
-import org.springframework.data.annotation.Id;
+
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Article {
 
-	private Long postId;
+private Long id;
 	
 	private String title;
 
@@ -17,7 +17,7 @@ public class Article {
 	
 	private Status status;
 	
-	private Author blogger;
+	private Author author;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss.SSS")
 	private Date postDate = new Date();
@@ -35,12 +35,12 @@ public class Article {
 	 * @param status
 	 * @param blogger
 	 */
-	public Article(Long postId, String title, String body, Status status, Author blogger) {
-		this.postId = postId;
+	public Article(Long id, String title, String body, Status status, Author author) {
+		this.id = id;
 		this.title = title;
 		this.body = body;
 		this.status = status;
-		this.blogger = blogger;
+		this.author = author;
 
 	}
 
@@ -68,20 +68,22 @@ public class Article {
 		this.status = status;
 	}
 
-	public Author getBlogger() {
-		return blogger;
+
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setBlogger(Author blogger) {
-		this.blogger = blogger;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public void setPostId(Long postId) {
-		this.postId = postId;
+	public Author getAuthor() {
+		return author;
 	}
 
-	public Long getPostId() {
-		return postId;
+	public void setAuthor(Author author) {
+		this.author = author;
 	}
 
 	public Date getPostDate() {
@@ -92,6 +94,7 @@ public class Article {
 		this.postDate = date;
 	}
 
+
 	public boolean isPushedToKafka() {
 		return pushedToKafka;
 	}
@@ -100,10 +103,11 @@ public class Article {
 		this.pushedToKafka = pushedToKafka;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Article [postId=" + postId + ", title=" + title + ", body=" + body + ", status=" + status + ", blogger="
-				+ blogger + ", postDate=" + postDate + ", pushedToKafka=" + pushedToKafka + "]";
+		return "Article [id=" + id + ", title=" + title + ", body=" + body + ", status=" + status + ", author=" + author
+				+ ", postDate=" + postDate + ", pushedToKafka=" + pushedToKafka + "]";
 	}
+
+	
 }

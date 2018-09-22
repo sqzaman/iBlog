@@ -19,4 +19,7 @@ public interface SearchService {
     Page<Article> findByAuthor(String author, PageRequest pageRequest);
 
     List<Article> findByTitle(String title);
+    
+    // store articles
+    void putArticleToElasticSearchIndex( iblog.core.model.Article article);
 }

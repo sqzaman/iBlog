@@ -44,7 +44,7 @@ public class IBlogSearchServiceApplicationTests {
 	    public void testSave() {
 
 	    	Date date = new Date();
-	    	Article article = new Article(1001L, "Java First Post", "Article body", "Syed Quamruzzaman", date);
+	    	Article article = new Article(1001L, "Java First Post", "Article body", "Syed Quamruzzaman", date.toString());
 	    	Article testArticle = searchService.save(article);
 
 	        assertNotNull(testArticle.getId());
@@ -58,7 +58,7 @@ public class IBlogSearchServiceApplicationTests {
 	    @Test
 	    public void testFindOne() {
 	    	Date date = new Date();
-	    	Article article = new Article(1002L, "PHP First Post", "Article body of PHP post", "Syed Mahbub Rafael", date);
+	    	Article article = new Article(1002L, "PHP First Post", "Article body of PHP post", "Syed Mahbub Rafael", date.toString());
 	    	searchService.save(article);
 
 	    	Article testArticle = searchService.findOne(article.getId());

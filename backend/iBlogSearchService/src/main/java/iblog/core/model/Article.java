@@ -19,10 +19,10 @@ private Long id;
 	
 	private Author author;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss.SSS")
-	private Date postDate = new Date();
+	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss.SSS")
+	private String postDate;
 
-	@JsonIgnore
+	//@JsonIgnore
 	private boolean pushedToKafka = false;
 	
 	public Article() {
@@ -86,11 +86,11 @@ private Long id;
 		this.author = author;
 	}
 
-	public Date getPostDate() {
+	public String getPostDate() {
 		return postDate;
 	}
 
-	public void setPostDate(Date date) {
+	public void setPostDate(String date) {
 		this.postDate = date;
 	}
 

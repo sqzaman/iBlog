@@ -18,7 +18,7 @@ public class Article {
 
     private String author;
     
-    private Date publishedDate;
+    private String publishedDate;
 
 	public Article() {
 		
@@ -30,7 +30,7 @@ public class Article {
 	 * @param author
 	 * @param body
 	 */
-	public Article(Long id, String title, String body, String author, Date publishedDate) {
+	public Article(Long id, String title, String body, String author, String publishedDate) {
 		this.id = id;
 		this.title = title;
 		this.author = author;
@@ -70,11 +70,11 @@ public class Article {
 		this.body = body;
 	}
 
-	public Date getPublishedDate() {
+	public String getPublishedDate() {
 		return publishedDate;
 	}
 
-	public void setPublishedDate(Date publishedDate) {
+	public void setPublishedDate(String publishedDate) {
 		this.publishedDate = publishedDate;
 	}
 	

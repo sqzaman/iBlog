@@ -17,6 +17,7 @@ public class Article {
 	
 	private Status status;
 	
+	
 	private Author blogger;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss.SSS")
@@ -41,7 +42,6 @@ public class Article {
 		this.body = body;
 		this.status = status;
 		this.blogger = blogger;
-
 	}
 
 	public String getTitle() {

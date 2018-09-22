@@ -28,6 +28,15 @@ public class BlogPostController {
 		return blogPostService.createNewBlogPost(blogPostRequest, currentUser);
 	}
 	
+	@PostMapping("/update/{postId}")
+	@PreAuthorize("hasRole('USER')")
+	public ResponseEntity<?> updateArticle(@Valid @RequestBody BlogPostRequest blogPostRequest, @CurrentUser UserPrincipal currentUser
+			, @PathVariable(name = "postId", required = true) final Long postId) {
+		return blogPostService.updateBlogPost(blogPostRequest, currentUser, postId);
+	}
+	
+	
+	
 	@PostMapping("/approve/{postId}/{status}")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> approveArticle(@PathVariable(name = "postId", required = true) final Long postId,

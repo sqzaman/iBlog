@@ -1,5 +1,6 @@
 package iblog.search.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class SearchServiceImpl implements SearchService {
 	@Override
 	public void putArticleToElasticSearchIndex(iblog.core.model.Article art) {
 		// TODO Auto-generated method stub
-		System.out.println(String.format("Article: %d started indexing", art.getId()));
+		System.out.println(String.format("Article: %d started indexing date:  %s", art.getId(), art.getPostDate()));
 		Article article = new Article(art.getId(), art.getTitle(), art.getBody(), art.getAuthor().getName(), art.getPostDate());
 		articleRepository.save(article);
 		System.out.println(String.format("Article: %d finished indexing", art.getId()));

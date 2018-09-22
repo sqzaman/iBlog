@@ -35,6 +35,7 @@ public class Article {
 		this.title = title;
 		this.author = author;
 		this.body = body;
+		this.publishedDate = publishedDate;
 	}
 
 

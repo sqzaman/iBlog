@@ -19,3 +19,7 @@ body {
         display: contents !important;
     }
 }
+
+.home-page-img{
+    height: 450px !important;
+}

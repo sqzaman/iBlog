@@ -10,12 +10,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import iblog.core.domain.services.BlogPostDomainService;
+import iblog.core.domain.services.CommentDomainService;
 import iblog.core.integration.Sender;
 import iblog.core.model.Article;
+import iblog.core.model.Author;
+import iblog.core.model.Comment;
 import iblog.core.model.Status;
 import iblog.core.payload.ApiResponse;
 import iblog.core.payload.BlogPostRequest;
+import iblog.core.payload.CommentPostRequest;
 import iblog.core.repository.BlogPostRepository;
+import iblog.core.repository.CommentRepository;
 import iblog.core.util.Helper;
 import iblog.security.UserPrincipal;
 
@@ -26,7 +31,11 @@ public class BlogPostService {
 	@Autowired
 	BlogPostRepository blogPostRepository;
 	@Autowired
+	CommentRepository commentRepository;
+	@Autowired
 	BlogPostDomainService blogPostDomainService;
+	@Autowired
+	CommentDomainService commentDomainService;
 	@Autowired
 	Sender kafkaSender;
 	
@@ -40,6 +49,31 @@ public class BlogPostService {
 		Article blogPost = blogPostRepository.save(blogPostDomainService.createNewBlogPost(blogPostRequest, currentUser)); 
 		return new ResponseEntity<Article>(blogPost, HttpStatus.OK); 		
 	}
+	
+	/**
+	 * Add new comment to a blog post
+	 * @param blogPostRequest
+	 * @return
+	 */
+	@Transactional
+	public ResponseEntity<?> addNewComment(CommentPostRequest commentPostRequest, UserPrincipal currentUser, Long postId){		
+		Comment newComment = commentRepository.save(commentDomainService.insertNewComment(commentPostRequest, currentUser, postId)); 
+		return new ResponseEntity<Comment>(newComment, HttpStatus.OK); 		
+	}
+	
+	
+	/**
+	 * Add new comment to a blog post
+	 * @param blogPostRequest
+	 * @return
+	 */
+	@Transactional
+	public ResponseEntity<?> replyToComment(CommentPostRequest commentPostRequest, UserPrincipal currentUser, Long commentId){		
+		Comment newComment = commentRepository.save(commentDomainService.replyToComment(commentPostRequest, currentUser, commentId)); 
+		return new ResponseEntity<Comment>(newComment, HttpStatus.OK); 		
+	}
+	
+	
 	
 	@Transactional
 	public ResponseEntity<?> approveBlogPost(Long postId, Integer status){
@@ -122,6 +156,7 @@ public class BlogPostService {
 		
 		/*Article blogPost = blogPostRepository.save(blogPostDomainService.createNewBlogPost(blogPostRequest, currentUser)); */
 		//return new ResponseEntity<Article>(blogPost, HttpStatus.OK); 	
+	
 		
 	}
 	

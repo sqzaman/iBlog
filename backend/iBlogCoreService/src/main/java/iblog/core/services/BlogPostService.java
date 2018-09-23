@@ -184,7 +184,13 @@ public class BlogPostService {
 	}
 	
 	public ResponseEntity<?> getAllArticles(){
-		List<Article> articles = blogPostRepository.findAll();
+		List<Article> articles = blogPostRepository.findAllByOrderByIdDesc();
 		return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);		
 	}
+	
+	public ResponseEntity<?> getAllArticlesByStatus(Integer status){
+		List<Article> articles = blogPostRepository.findAllByStatusOrderByIdDesc(Helper.fromIntStatus(status));
+		return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);		
+	}
+
 }

@@ -38,4 +38,8 @@ export class ArticleService {
   getAllArticles(): Observable<Object> {
     return this.http.get(this.globals.BASE_API_URL + 'blog/get/all/articles');
   }
+
+  getAllArticlesByStatus(status: Number): Observable<Object> {
+    return this.http.get(this.globals.BASE_API_URL + 'blog/get/articles/' + status);
+  }
 }

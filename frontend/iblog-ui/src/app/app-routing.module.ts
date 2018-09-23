@@ -23,6 +23,9 @@ import { UploadProductImageComponent } from './modules/admin/admin-product/uploa
 import { MyArticlesComponent } from './modules/authentication/components/profile/my-articles/my-articles.component';
 import { AddNewArtilceComponent } from './modules/authentication/components/profile/add-new-artilce/add-new-artilce.component';
 
+import { AdminAllArticleComponent } from './modules/admin/admin-all-article/admin-all-article.component';
+import { AdminApprovalNeedArticleComponent } from './modules/admin/admin-approval-need-article/admin-approval-need-article.component';
+
 
 const routes: Routes = [
     {
@@ -80,6 +83,8 @@ const routes: Routes = [
         component: AdminComponent,
         children: [
             { path: 'overview', component: AdminOverviewComponent },
+            { path: 'article/all', component: AdminAllArticleComponent },
+            { path: 'articles/approval-need', component: AdminApprovalNeedArticleComponent },
             { path: 'product', component: AdminProductComponent },
             { path: 'product/new', component: NewProductComponent },
             { path: 'product/edit/:id', component: NewProductComponent },

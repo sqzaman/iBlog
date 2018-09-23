@@ -8,12 +8,12 @@
                     Dasboard
                    
                 </a>
-                <a href="/admin/all-articles" routerLink="/admin/all-articles" routerLinkActive="active" class="list-group-item list-group-item-action">
+                <a href="/admin/article/all" routerLink="/admin/article/all" routerLinkActive="active" class="list-group-item list-group-item-action">
                     <i class="fa fa-edit">&nbsp;</i>
-                    All Articles ({{totalArticleCount}})</a>
-                <a href="/admin/approval-need" routerLink="/admin/approval-need" routerLinkActive="active" class="list-group-item list-group-item-action">
+                    All Articles <span class="total-article-count">{{totalArticleCount}}</span></a>
+                <a href="/admin/articles/approval-need" routerLink="/admin/articles/approval-need" routerLinkActive="active" class="list-group-item list-group-item-action">
                     <i class="fa fa-address-card-o">&nbsp;</i>
-                    Approval need ({{totalUnapprovedArticleCount}})</a>
+                    Approval need <span class="total-unapproved-article-count">{{totalUnapprovedArticleCount}}</span></a>
                  
             </div>
         </div>

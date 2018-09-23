@@ -77,4 +77,9 @@ public class BlogPostController {
 		return blogPostService.getAllArticles();
 	}
 
+	@GetMapping("/get/articles/{status}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<?> getAllArticlesByStatus(@PathVariable(name = "status", required = true) final Integer status) {
+		return blogPostService.getAllArticlesByStatus(status);
+	}
 }

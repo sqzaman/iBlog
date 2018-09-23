@@ -72,4 +72,9 @@ public class BlogPostController {
 		return blogPostService.getArticles(currentUser);
 	}
 
+	@GetMapping("/get/all/articles")
+	public ResponseEntity<?> getAllArticles() {
+		return blogPostService.getAllArticles();
+	}
+
 }

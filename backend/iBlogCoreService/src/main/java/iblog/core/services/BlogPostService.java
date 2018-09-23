@@ -182,4 +182,9 @@ public class BlogPostService {
 			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Specified article is not available!"),
 					HttpStatus.BAD_REQUEST);
 	}
+	
+	public ResponseEntity<?> getAllArticles(){
+		List<Article> articles = blogPostRepository.findAll();
+		return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);		
+	}
 }

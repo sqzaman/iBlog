@@ -12,7 +12,7 @@ export class ArticleService {
   constructor(private http: HttpClient,  private globals: Globals) { }
  
   createArticle(article: Object): Observable<Object> {
-    console.log(article);
+    //console.log(article);
     return this.http.post(this.globals.BASE_API_URL + 'blog/create', article);
   }
  
@@ -35,13 +35,7 @@ export class ArticleService {
     return this.http.post(url, article);
   }
 
-  /*
-  updateUser(id: number, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/${id}`, value);
+  getAllArticles(): Observable<Object> {
+    return this.http.get(this.globals.BASE_API_URL + 'blog/get/all/articles');
   }
- 
-  deleteUser(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
-  }
-*/
 }

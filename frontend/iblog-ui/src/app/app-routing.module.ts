@@ -26,6 +26,10 @@ import { AddNewArtilceComponent } from './modules/authentication/components/prof
 
 const routes: Routes = [
     {
+        path: '',
+        component: LandingPageComponent
+    },
+    {
         path: 'home',
         component: LandingPageComponent
     },

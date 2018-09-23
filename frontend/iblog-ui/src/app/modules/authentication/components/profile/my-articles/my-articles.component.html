@@ -1,15 +1,19 @@
-<div class="jumbotron" *ngFor="let article of articles">
-  <h1 class="display-4">    {{article.title}}
-     <span *ngIf="article.status=='APPROVED'" class="badge badge-success article-status">{{article.status}}</span>
-     <span *ngIf="article.status=='CREATED'" class="badge badge-warning article-status">{{article.status}}</span>
-     <span *ngIf="article.status=='PENDING'" class="badge badge-secondary article-status">{{article.status}}</span>
-     <span *ngIf="article.status=='REJECTED'" class="badge badge-danger article-status">{{article.status}}</span>
-    </h1>
-    <p class="posting-date">Date posted: {{article.postDate}}</p>
-  <p class="article-body">{{ (article.body.length > 300)? (article.body | slice:0:300)+'..':(article.body) }}</p>
-  <hr class="my-4">
-    <p class="lead">
-    <a class="btn btn-primary" href="#" role="button">Read more</a>
-    <a class="btn btn-primary" href="/profile/article/edit/{{article.id}}" role="button" style="float: right;">Edit</a>
-  </p>
+<div class="container">
+  <h2 style="padding: 20px;">My Articles</h2>
+  <hr />
+  <div class="jumbotron" *ngFor="let article of articles">
+    <h3 class="display-7">    {{article.title}}
+      <span *ngIf="article.status=='APPROVED'" class="badge badge-success article-status">{{article.status}}</span>
+      <span *ngIf="article.status=='CREATED'" class="badge badge-warning article-status">{{article.status}}</span>
+      <span *ngIf="article.status=='PENDING'" class="badge badge-secondary article-status">{{article.status}}</span>
+      <span *ngIf="article.status=='REJECTED'" class="badge badge-danger article-status">{{article.status}}</span>
+      </h3>
+      <p class="posting-date">Date posted: {{article.postDate}}</p>
+    <p class="article-body">{{ (article.body.length > 300)? (article.body | slice:0:300)+'..':(article.body) }}</p>
+    <hr class="my-4">
+      <p class="lead">
+      <a class="btn btn-primary" href="#" role="button">Read more</a>
+      <a class="btn btn-primary" href="/profile/article/edit/{{article.id}}" role="button" style="float: right;">Edit</a>
+    </p>
+  </div>
 </div>

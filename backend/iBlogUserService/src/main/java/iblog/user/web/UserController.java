@@ -45,7 +45,7 @@ public class UserController {
 	}	
 
 	@GetMapping("/get")
-	@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<?> getCustomer(@CurrentUser UserPrincipal currentUser) {
 		return customerService.getCustomer(currentUser);
 	}

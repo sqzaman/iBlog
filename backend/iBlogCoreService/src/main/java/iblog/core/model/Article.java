@@ -20,7 +20,7 @@ public class Article {
 	private Author author;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss.SSS")
-	private Date postDate;
+	private Date postDate = new Date();
 
 	@JsonIgnore
 	private boolean pushedToKafka = false;

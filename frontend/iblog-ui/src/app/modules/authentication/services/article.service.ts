@@ -15,6 +15,11 @@ export class ArticleService {
     return this.http.post(this.globals.BASE_API_URL + 'blog/create', article);
   }
  
+  getUserArticles(): Observable<Object> {
+    //console.log(article);
+    return this.http.get(this.globals.BASE_API_URL + 'blog/get');
+  }
+
   /*
   updateUser(id: number, value: any): Observable<Object> {
     return this.http.put(`${this.baseUrl}/${id}`, value);

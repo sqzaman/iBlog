@@ -1,5 +1,6 @@
 package iblog.core.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -23,7 +24,6 @@ import iblog.core.repository.BlogPostRepository;
 import iblog.core.repository.CommentRepository;
 import iblog.core.util.Helper;
 import iblog.security.UserPrincipal;
-
 
 @Service
 public class BlogPostService {
@@ -158,6 +158,11 @@ public class BlogPostService {
 		//return new ResponseEntity<Article>(blogPost, HttpStatus.OK); 	
 	
 		
+	}
+	
+	public ResponseEntity<?> getArticles(UserPrincipal currentUser){
+		List<Article> articles = blogPostRepository.findAllByAuthor(new Author(currentUser.getId(), currentUser.getName()));
+		return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);		
 	}
 	
 }

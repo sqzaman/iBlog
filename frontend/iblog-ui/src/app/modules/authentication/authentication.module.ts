@@ -7,8 +7,6 @@ import { SigninComponent } from './components/signin/signin.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileEditComponent } from './components/profile/profile-edit/profile-edit.component';
 import { ProfileOverviewComponent } from './components/profile/profile-overview/profile-overview.component';
-import { ProfileBillingComponent } from './components/profile/profile-billing/profile-billing.component';
-import { ProfileShippingComponent } from './components/profile/profile-shipping/profile-shipping.component';
 import { MyArticlesComponent } from './components/profile/my-articles/my-articles.component';
 import { AddNewArtilceComponent } from './components/profile/add-new-artilce/add-new-artilce.component';
 
@@ -18,6 +16,6 @@ import { AddNewArtilceComponent } from './components/profile/add-new-artilce/add
     CommonModule,
     RouterModule
   ],
-  declarations: [SignupComponent, SigninComponent, ProfileComponent, ProfileEditComponent, ProfileOverviewComponent, ProfileBillingComponent, ProfileShippingComponent, MyArticlesComponent, AddNewArtilceComponent]
+  declarations: [SignupComponent, SigninComponent, ProfileComponent, ProfileEditComponent, ProfileOverviewComponent, MyArticlesComponent, AddNewArtilceComponent]
 })
 export class AuthenticationModule { }

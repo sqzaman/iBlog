@@ -8,8 +8,6 @@ import { SigninComponent } from './modules/authentication/components/signin/sign
 import { ProfileComponent } from './modules/authentication/components/profile/profile.component';
 import { ProfileEditComponent } from './modules/authentication/components/profile/profile-edit/profile-edit.component';
 import { ProfileOverviewComponent } from './modules/authentication/components/profile/profile-overview/profile-overview.component';
-import { ProfileBillingComponent } from './modules/authentication/components/profile/profile-billing/profile-billing.component';
-import { ProfileShippingComponent } from './modules/authentication/components/profile/profile-shipping/profile-shipping.component';
 import { ProductComponent } from './modules/products/components/product/product.component';
 import { CartComponent } from './modules/cart/components/cart/cart.component';
 
@@ -66,9 +64,6 @@ const routes: Routes = [
         children: [
             { path: 'overview', component: ProfileOverviewComponent },
             { path: 'edit', component: ProfileEditComponent },
-            { path: 'billing-address', component: ProfileBillingComponent },
-            { path: 'shipping-address', component: ProfileShippingComponent },
-
             { path: 'my-articles', component: MyArticlesComponent },
             { path: 'add-new-article', component: AddNewArtilceComponent },
             { path: '', redirectTo:'overview', pathMatch:"full" }

@@ -18,7 +18,7 @@ export class AuthService {
     return this.http.post(this.globals.BASE_API_URL + "oauth/auth/signin", credentials);
   }
   getRole(): Observable<Object> {    
-    return this.http.get("http://localhost:8080/api/customer/getRole");//this.globals.BASE_API_URL + "oauth/auth/getRole");
+    return this.http.get("http://localhost:8080/api/user/getRole");//this.globals.BASE_API_URL + "oauth/auth/getRole");
   }
 
 }

@@ -47,7 +47,10 @@ public class BlogPostService {
 	@Transactional
 	public ResponseEntity<?> createNewBlogPost(BlogPostRequest blogPostRequest, UserPrincipal currentUser){
 		Article blogPost = blogPostRepository.save(blogPostDomainService.createNewBlogPost(blogPostRequest, currentUser)); 
-		return new ResponseEntity<Article>(blogPost, HttpStatus.OK); 		
+		//return new ResponseEntity<Article>(blogPost, HttpStatus.OK); 		
+		return new ResponseEntity<ApiResponse>(
+				new ApiResponse(true, "Article added successfully!", blogPost),
+				HttpStatus.CREATED);
 	}
 	
 	/**
@@ -140,11 +143,11 @@ public class BlogPostService {
 					System.out.println(ex.getStackTrace());
 				}
 			}			
-			/*return new ResponseEntity<ApiResponse>(
-					new ApiResponse(true, "Article record is updated successfully!"),
-					HttpStatus.OK);*/
+			return new ResponseEntity<ApiResponse>(
+					new ApiResponse(true, "Article is updated successfully!"),
+					HttpStatus.OK);
 			
-			return new ResponseEntity<Article>(blogPost, HttpStatus.OK); 	
+			//return new ResponseEntity<Article>(blogPost, HttpStatus.OK); 	
 			
 		} else {
 			return new ResponseEntity<ApiResponse>(

@@ -19,6 +19,7 @@ export class AddNewArtilceComponent implements OnInit {
   pageHeading = "Add new Article";
   buttonCaption = "Create";
   articleId: number = null;
+  formInNewMode: boolean = true;
   sub;
    
 
@@ -29,6 +30,7 @@ export class AddNewArtilceComponent implements OnInit {
         this.articleId = Number.parseInt(params[2].path);
         this.pageHeading = "Update Article";
         this.buttonCaption = "Update";
+        this.formInNewMode = false;
       }
 
     })
@@ -59,19 +61,23 @@ export class AddNewArtilceComponent implements OnInit {
     this.articleService.saveArticle(this.article, this.articleId)
       .subscribe((data) => {
         console.log(data);
-        this.success = JSON.parse(JSON.stringify(data)).ok;
+        this.success = JSON.parse(JSON.stringify(data)).success;
         this.message = JSON.parse(JSON.stringify(data)).message;
-        this.article = new Article();
+        if (this.formInNewMode){
+            this.article = new Article();
+        }
+        
       }, (error) => {
       //  this.response = new Response(error);
        // this.response = error;
         //console.log(error.error.errors);
 
-        this.failed = !JSON.parse(JSON.stringify(error.error)).ok;
-
+        this.failed = !JSON.parse(JSON.stringify(error.error)).success;
+        this.message = JSON.parse(JSON.stringify(error)).message;
+        /*
         error.error.errors.forEach(element => {
           this.message += element.defaultMessage + "<br/>";
-        });
+        });*/
         //this.message = JSON.parse(JSON.stringify(error.error)).message;
       });
      // console.log("========================");

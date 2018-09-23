@@ -16,8 +16,11 @@ export class ArticleService {
   }
  
   getUserArticles(): Observable<Object> {
-    //console.log(article);
     return this.http.get(this.globals.BASE_API_URL + 'blog/get');
+  }
+
+  getArticle(id: Number ): Observable<Object> {
+    return this.http.get(this.globals.BASE_API_URL + "blog/getById/" + id);
   }
 
   /*

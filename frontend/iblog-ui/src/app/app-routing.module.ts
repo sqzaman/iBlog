@@ -65,7 +65,8 @@ const routes: Routes = [
             { path: 'overview', component: ProfileOverviewComponent },
             { path: 'edit', component: ProfileEditComponent },
             { path: 'my-articles', component: MyArticlesComponent },
-            { path: 'add-new-article', component: AddNewArtilceComponent },
+            { path: 'article/new', component: AddNewArtilceComponent },
+            { path: 'article/edit/:id', component: AddNewArtilceComponent },
             { path: '', redirectTo:'overview', pathMatch:"full" }
         ]
     }

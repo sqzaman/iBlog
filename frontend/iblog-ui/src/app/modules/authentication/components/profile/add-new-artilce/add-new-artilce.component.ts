@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../model/article';
 import { ArticleService } from '../../../services/article.service';
+import { ActivatedRoute } from "@angular/router";
 
 
 @Component({
@@ -15,10 +16,22 @@ export class AddNewArtilceComponent implements OnInit {
   success: boolean = false;
   failed: boolean = false;
   message: string = "";
+  pageHeading = "Add new Article";
+  articleId: number = null;
+  sub;
    
 
  
-  constructor(private articleService: ArticleService) { }
+  constructor(private articleService: ArticleService, public route: ActivatedRoute) { 
+    this.sub = this.route.url.subscribe(params => {
+      if (params[1].path == 'edit') {
+        this.articleId = Number.parseInt(params[2].path);
+        this.pageHeading = "Update Article";
+      }
+
+    })
+
+  }
 
 
   ngOnInit() {
@@ -66,6 +79,10 @@ export class AddNewArtilceComponent implements OnInit {
     this.failed = false;
     this.message = "";
     this.save();
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

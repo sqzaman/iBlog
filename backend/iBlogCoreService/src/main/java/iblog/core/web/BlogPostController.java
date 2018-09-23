@@ -65,5 +65,9 @@ public class BlogPostController {
 		return blogPostService.getArticles(currentUser);
 	}
 	
+	@GetMapping("/get/{id}")
+	public ResponseEntity<?> getArticleById(@PathVariable(name = "id", required = true) final Long id) {
+		return blogPostService.getArticle(id);
+	}
 	
 }

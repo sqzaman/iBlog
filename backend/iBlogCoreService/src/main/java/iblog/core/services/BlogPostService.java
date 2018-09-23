@@ -165,4 +165,18 @@ public class BlogPostService {
 		return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);		
 	}
 	
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public ResponseEntity<?> getArticle(Long id) {
+		Optional<Article> result = blogPostRepository.findById(id);
+		if (result.isPresent())
+			return new ResponseEntity<Article>(result.get(), HttpStatus.OK);
+		else
+			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Specified article is not available!"),
+					HttpStatus.BAD_REQUEST);
+	}
 }

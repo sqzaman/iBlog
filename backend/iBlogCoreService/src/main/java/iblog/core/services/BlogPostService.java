@@ -161,7 +161,7 @@ public class BlogPostService {
 	}
 	
 	public ResponseEntity<?> getArticles(UserPrincipal currentUser){
-		List<Article> articles = blogPostRepository.findAllByAuthor(new Author(currentUser.getId(), currentUser.getName()));
+		List<Article> articles = blogPostRepository.findAllByAuthorOrderByIdDesc(new Author(currentUser.getId(), currentUser.getName()));
 		return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);		
 	}
 	

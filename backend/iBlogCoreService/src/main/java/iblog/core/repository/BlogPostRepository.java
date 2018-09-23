@@ -9,6 +9,6 @@ import iblog.core.model.Author;
 
 public interface BlogPostRepository extends MongoRepository<Article, Long> {
 	
-	List<Article> findAllByAuthor(Author author);
+	List<Article> findAllByAuthorOrderByIdDesc(Author author);
 
 }

@@ -84,7 +84,7 @@ public class BlogPostService {
 		Article blogPost = blogPostRepository.findById(postId).orElse(null);
 		Article updateResult = null;
 		if (blogPost == null) {
-			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Customer not found!"), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Post not found!"), HttpStatus.BAD_REQUEST);
 		}
 		
 		
@@ -105,7 +105,7 @@ public class BlogPostService {
 				}
 			}	
 			return new ResponseEntity<ApiResponse>(
-					new ApiResponse(true, "Article record is updated successfully!"),
+					new ApiResponse(true, "Article status has been updated successfully!"),
 					HttpStatus.OK);
 		} else {
 			return new ResponseEntity<ApiResponse>(

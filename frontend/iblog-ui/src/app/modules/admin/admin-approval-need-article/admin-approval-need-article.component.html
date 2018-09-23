@@ -1,5 +1,11 @@
 <div class="container">
     <h2 style="padding: 20px;">Articles need approval</h2>
+    <div [hidden]="!success" class="alert alert-success" role="alert">
+        {{ message }}
+      </div>
+      <div [hidden]="!failed" class="alert alert-danger" role="alert">
+          <p  [innerHtml]="message"></p>
+        </div>
     <hr />
     <div class="jumbotron" *ngFor="let article of articles" id="article-id-{{article.id}}">
       <h3 class="display-7">    {{article.title}}

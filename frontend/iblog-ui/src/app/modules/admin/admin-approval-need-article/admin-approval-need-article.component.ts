@@ -9,6 +9,9 @@ import { ArticleService } from '../../authentication/services/article.service';
 export class AdminApprovalNeedArticleComponent implements OnInit {
 
   articles: Object;
+  success: boolean = false;
+  failed: boolean = false;
+  message: string = "";
 
   constructor(private articleService: ArticleService) { }
 
@@ -21,12 +24,36 @@ export class AdminApprovalNeedArticleComponent implements OnInit {
     )
   }
 
-  rejectMe(articleId) {
-    alert(articleId);
-  }
   approveMe(articleId) {
-    alert(articleId);
+    this.articleService.updateArticleStatus(articleId, 1).subscribe(
+      (data) => {
+        this.success = JSON.parse(JSON.stringify(data)).success;
+        this.message = JSON.parse(JSON.stringify(data)).message;
+        document.getElementById("article-id-" + articleId).remove();
+        //console.log(document.getElementById("total-unapproved-article-count").innerHTML);
+        let remainToApprove = parseInt(document.getElementById("total-unapproved-article-count").innerHTML) - 1;
+        document.getElementById("total-unapproved-article-count").innerHTML =  remainToApprove.toString()
+      }, (error) => { 
+          this.failed = !JSON.parse(JSON.stringify(error.error)).success;
+          this.message = JSON.parse(JSON.stringify(error.error)).message;
+          document.getElementById("article-id-" + articleId).remove();
+      }
+    )
   }
 
+  rejectMe(articleId) {
+    this.articleService.updateArticleStatus(articleId, 2).subscribe(
+      (data) => {
+        this.success = JSON.parse(JSON.stringify(data)).success;
+        this.message = JSON.parse(JSON.stringify(data)).message;
+        document.getElementById("article-id-" + articleId).remove();
+        let remainToApprove = parseInt(document.getElementById("total-unapproved-article-count").innerHTML) - 1;
+        document.getElementById("total-unapproved-article-count").innerHTML =  remainToApprove.toString()
+      }, (error) => { 
+          this.failed = !JSON.parse(JSON.stringify(error.error)).success;
+          this.message = JSON.parse(JSON.stringify(error.error)).message;
+      }
+    )
+  }
 
 }

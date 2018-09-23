@@ -42,4 +42,10 @@ export class ArticleService {
   getAllArticlesByStatus(status: Number): Observable<Object> {
     return this.http.get(this.globals.BASE_API_URL + 'blog/get/articles/' + status);
   }
+
+  updateArticleStatus(postId: number, status: number ): Observable<Object> {
+    let url = "";
+    url = this.globals.BASE_API_URL + "blog/approve/" + postId + "/" + status;
+    return this.http.post(url, null);
+  }
 }

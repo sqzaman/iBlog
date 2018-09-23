@@ -5,6 +5,7 @@
      <span *ngIf="article.status=='PENDING'" class="badge badge-secondary article-status">{{article.status}}</span>
      <span *ngIf="article.status=='REJECTED'" class="badge badge-danger article-status">{{article.status}}</span>
     </h1>
+    <p class="posting-date">Date posted: {{article.postDate}}</p>
   <p class="article-body">{{ (article.body.length > 300)? (article.body | slice:0:300)+'..':(article.body) }}</p>
   <hr class="my-4">
     <p class="lead">

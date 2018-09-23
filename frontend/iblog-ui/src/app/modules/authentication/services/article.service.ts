@@ -16,7 +16,7 @@ export class ArticleService {
   }
  
   getUserArticles(): Observable<Object> {
-    return this.http.get(this.globals.BASE_API_URL + 'blog/get');
+    return this.http.get(this.globals.BASE_API_URL + 'get/user/articles');
   }
 
   getArticle(id: Number ): Observable<Object> {

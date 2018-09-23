@@ -11,12 +11,13 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class AddNewArtilceComponent implements OnInit {
 
-  article: Article = new Article();
+  article: any = new Article();
   submitted: boolean = false;
   success: boolean = false;
   failed: boolean = false;
   message: string = "";
   pageHeading = "Add new Article";
+  buttonCaption = "Create";
   articleId: number = null;
   sub;
    
@@ -27,6 +28,7 @@ export class AddNewArtilceComponent implements OnInit {
       if (params[1].path == 'edit') {
         this.articleId = Number.parseInt(params[2].path);
         this.pageHeading = "Update Article";
+        this.buttonCaption = "Update";
       }
 
     })
@@ -35,6 +37,15 @@ export class AddNewArtilceComponent implements OnInit {
 
 
   ngOnInit() {
+    if (this.articleId != null) {
+      this.articleService.getArticle(this.articleId).subscribe(
+        (data) => {
+          this.article = data;
+        }, (error) => {
+        }
+      )
+    }
+
   }
 
   newArticle(): void {
@@ -45,7 +56,7 @@ export class AddNewArtilceComponent implements OnInit {
   save() {
 
 
-    this.articleService.createArticle(this.article)
+    this.articleService.saveArticle(this.article, this.articleId)
       .subscribe((data) => {
         console.log(data);
         this.success = JSON.parse(JSON.stringify(data)).ok;

@@ -11,12 +11,9 @@ import { AdminModule } from './modules/admin/admin.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
-import { JwtInterceptor } from './app.interceptor';
+import { JwtInterceptor } from "./app.interceptor";
 import { CartModule } from './modules/cart/cart.module';
-import { ViewArticleComponent } from './modules/article/view-article/view-article.component';
-import { ArticleModule } from './modules/article/article.module';
 import { SearchModule } from './modules/search/search.module';
-
 
 @NgModule({
   declarations: [
@@ -35,7 +32,6 @@ import { SearchModule } from './modules/search/search.module';
     OrdersModule,
     AdminModule,
     CartModule,
-    ArticleModule,
     SearchModule
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],

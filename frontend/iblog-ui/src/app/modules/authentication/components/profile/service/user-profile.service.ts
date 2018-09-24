@@ -12,15 +12,15 @@ export class UserProfileService {
   }
 
   getProfile(): Observable<Object> {
-    return this.http.get(this.globals.BASE_API_URL + 'user/get');
+    return this.http.get(this.globals.BASE_API_URL + "user/get");
   }
 
   updateProfile(userProfile: Object ): Observable<Object> {
-    return this.http.post(this.globals.BASE_API_URL + 'customer/update', userProfile);
+    return this.http.post(this.globals.BASE_API_URL + "customer/update", userProfile);
   }
 
   updateBillingAddress(billingAddress: Object ): Observable<Object> {
-    return this.http.post(this.globals.BASE_API_URL + 'customer/addAddress', billingAddress);
+    return this.http.post(this.globals.BASE_API_URL + "customer/addAddress", billingAddress);
   }
 
 }

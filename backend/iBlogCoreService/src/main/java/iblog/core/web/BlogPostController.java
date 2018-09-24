@@ -82,18 +82,4 @@ public class BlogPostController {
 	public ResponseEntity<?> getAllArticlesByStatus(@PathVariable(name = "status", required = true) final Integer status) {
 		return blogPostService.getAllArticlesByStatus(status);
 	}
-	
-	@GetMapping("/get/{postId}")
-	@PreAuthorize("hasRole('USER')")
-	public ResponseEntity<?> getUserArticleById(@PathVariable(name = "postId", required = true) final Long postId, @CurrentUser UserPrincipal currentUser) {
-		return blogPostService.getUserArticleById(postId, currentUser);
-	}
-	
-	
-	@GetMapping("/get/comments/{postId}")
-	//@GetMapping("/get/{postId}")
-	@PreAuthorize("hasRole('USER')")
-	public ResponseEntity<?> getCommentsByPostId(@PathVariable(name = "postId", required = true) final Long postId, @CurrentUser UserPrincipal currentUser) {
-		return blogPostService.getCommentsByPostId(postId, currentUser);
-	}
 }

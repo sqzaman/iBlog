@@ -50,7 +50,7 @@ public class CommentDomainService {
 		
 		Comment comment = commentRepository.findById(commentId).orElse(null);		
 		
-		Article blogPost = blogPostRepository.findById(comment.getBlogPost().getPostId()).orElse(null);
+		Article blogPost = blogPostRepository.findById(comment.getBlogPost().getId()).orElse(null);
 		Author a = new Author(currentUser.getId(), currentUser.getName());	
 		
 		Long newCommentId = getNextSequenceId(HOSTING_SEQ_KEY);

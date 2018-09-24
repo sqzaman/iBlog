@@ -9,13 +9,15 @@ import { UserProfileService } from '../service/user-profile.service';
 export class ProfileOverviewComponent implements OnInit {
 
   userProfile: any;
-  constructor(private userProfileService: UserProfileService) {
+  constructor(private userProfileService: UserProfileService){
   }
 
   ngOnInit() {
     this.userProfileService.getProfile().subscribe(
       (data) => {
         this.userProfile = data;
+        //this.router.navigate(['profile']);
+
       }, (error) => {
           console.log(error);
       }

@@ -6,16 +6,16 @@
     <div class="col-xl-12">
       <div class="card">
         <header class="card-header">
-          <h4 class="card-title mt-2">New Article</h4>
+          <h4 [innerHtml]="pageHeading" class="card-title mt-2"></h4>
         </header>
         <article class="card-body">
           <!--<div [hidden]="submitted" style="width: 300px;">-->
               <div [hidden]="!failed" class="alert alert-danger" role="alert">
                   <p  [innerHtml]="message"></p>
-              </div>
-              <div [hidden]="!success" class="alert alert-success" role="alert">
+                </div>
+                <div [hidden]="!success" class="alert alert-success" role="alert">
                     {{ message }}
-              </div>
+                  </div>
             <form (ngSubmit)="onSubmit()">
               <div class="form-row">
                 <div class="col form-group">
@@ -35,7 +35,7 @@
               </div>
               <!-- form-group end.// -->
               <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block"> Create </button>
+                <button type="submit" class="btn btn-primary btn-block"> {{buttonCaption}} </button>
               </div>
              
             </form>

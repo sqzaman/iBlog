@@ -13,6 +13,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { JwtInterceptor } from "./app.interceptor";
 import { CartModule } from './modules/cart/cart.module';
+import { SearchModule } from './modules/search/search.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CartModule } from './modules/cart/cart.module';
     ProductsModule,
     OrdersModule,
     AdminModule,
-    CartModule
+    CartModule,
+    SearchModule
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]

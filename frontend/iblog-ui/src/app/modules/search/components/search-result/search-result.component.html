@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row justify-content-center">
+  <div class="col-md-4">
+    <h1 id="articles-container">Articles</h1>
+  </div>
+  <div class="col-md-8">
+    <form (ngSubmit)="onSubmit()" class="form-inline" style="margin-top: 35px">
+      <input style="width: 88%" class="form-control mr-sm-2" class="form-control" required [(ngModel)]="search.text" name="text" placeholder="Search" aria-label="Search">
+      
+      
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+ 
+    </form>
+
+  </div>
+ </div>
+  <br />
+
+  <div class="alert alert-info" role="alert" id="search-result-info">
+      <p style="float: left;">
+    Showing <b id="current-showing-records">{{searchResult?.hits?.hits?.length}}</b> out of <b>{{searchResult?.hits.total}}</b> articles, took <b>{{searchResult?.took}} milliseconds</b> to retrive
+  </p>
+    <p style="float: right;" *ngIf="searchResult?.hits?.hits?.length < searchResult?.hits.total">
+        <button type="button" (click)="showMore(searchResult?.hits?.hits?.length)" class="btn btn-info" >Show more</button>
+      </p>
+      <div style="clear: both;"></div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+
+      <div class="alert alert-success" style="background-color: white" role="alert" *ngFor="let article of searchResult?.hits.hits">
+        <h4 class="alert-heading article-title">{{article?._source?.title}}</h4>
+        <p class="author-and-postdate">
+          <span>Author: {{article?._source?.author}}</span> &nbsp;
+          <span>Post Date: {{article?._source?.publishedDate}}</span>
+        </p>
+        <p>
+
+          {{ (article?._source?.body?.length > 300)? (article?._source?.body | slice:0:300)+'..':(article?._source?.body) }}
+        </p>
+        <hr>
+        <p class="mb-0">
+          <a style="float: right" class="btn btn-primary" href="#" role="button">Read more</a>
+        </p>
+        <div style="clear: both"></div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

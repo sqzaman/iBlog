@@ -1,0 +1,19 @@
+#articles-container{
+    margin-top: 30px;
+}
+
+.article-title{
+    color: dodgerblue;
+    font-weight: bold;
+}
+
+#search-result-info{
+    font-style: italic;
+    color: grey;
+}
+
+.author-and-postdate{
+    color: grey;
+    font-size: 14px;
+    font-style: italic;
+}

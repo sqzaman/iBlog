@@ -1,10 +1,13 @@
 package iblog.user.service;
 
 import java.net.URI;
+
+import org.apache.commons.math.stat.descriptive.summary.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import iblog.customers.integration.OAuth2Proxy;
@@ -13,8 +16,10 @@ import iblog.customers.payload.ApiResponse;
 import iblog.customers.payload.UserSignUpRequest;
 import iblog.customers.payload.CustomerUpdateRequest;
 import iblog.security.UserPrincipal;
+import iblog.user.domain.ProductImage;
 import iblog.user.domain.User;
 import iblog.user.dto.AccountDto;
+import iblog.user.repository.ProductImageRepository;
 import iblog.user.repository.UserRepository;
 
 
@@ -23,6 +28,12 @@ public class UserService {
 
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	private FileStorageService fileStorageService;
+	@Autowired
+	private ProductImageRepository productImageRepository;
+	@Autowired
+	private UserRepository productRepository;
 
 	@Autowired
 	OAuth2Proxy oauth2Proxy;
@@ -56,7 +67,29 @@ public class UserService {
 					HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ResponseEntity<?> uploadImage(MultipartFile file, Long productId) {
+		String fileName = fileStorageService.storeFile(file);
 
+		String fileUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/productImage/").path(fileName)
+				.toUriString();
+		//Product product = productRepository.findByProductId(productId).orElse(null);
+		User product = productRepository.findById(productId).orElse(null);
+		if (product != null) {
+			ProductImage productImage = productImageRepository
+					.save(new ProductImage());
+
+			//return new ResponseEntity<UploadFileResponse>(new UploadFileResponse(productImage.getFileName(),
+			//		productImage.getFileUri(), productImage.getFileType(), productImage.getSize()), HttpStatus.OK);
+			return new ResponseEntity<ProductImage>(productImage, HttpStatus.OK);
+
+		} else {
+			return new ResponseEntity(new ApiResponse(false, "Specified product is not available!"),
+					HttpStatus.BAD_REQUEST);
+		}
+
+	}
 	public ResponseEntity<?> updateCustomert(CustomerUpdateRequest customerUpdateRequest, UserPrincipal currentUser) {
 		User user = userRepository.findByEmail(currentUser.getEmail());
 		User updateResult = null;

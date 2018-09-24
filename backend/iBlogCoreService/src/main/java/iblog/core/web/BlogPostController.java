@@ -59,11 +59,27 @@ public class BlogPostController {
 		return blogPostService.approveBlogPost(postId, status);
 	}
 	
-	@GetMapping("/get")
+	
+	@GetMapping("/get/{id}")
+	public ResponseEntity<?> getArticleById(@PathVariable(name = "id", required = true) final Long id) {
+		return blogPostService.getArticle(id);
+	}
+	
+	
+	@GetMapping("/get/user/articles")
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> getUserArticles(@CurrentUser UserPrincipal currentUser) {
 		return blogPostService.getArticles(currentUser);
 	}
-	
-	
+
+	@GetMapping("/get/all/articles")
+	public ResponseEntity<?> getAllArticles() {
+		return blogPostService.getAllArticles();
+	}
+
+	@GetMapping("/get/articles/{status}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<?> getAllArticlesByStatus(@PathVariable(name = "status", required = true) final Integer status) {
+		return blogPostService.getAllArticlesByStatus(status);
+	}
 }

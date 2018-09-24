@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../model/article';
 import { ArticleService } from '../../../services/article.service';
+import { ActivatedRoute } from "@angular/router";
 
 
 @Component({
@@ -10,18 +11,43 @@ import { ArticleService } from '../../../services/article.service';
 })
 export class AddNewArtilceComponent implements OnInit {
 
-  article: Article = new Article();
+  article: any = new Article();
   submitted: boolean = false;
   success: boolean = false;
   failed: boolean = false;
   message: string = "";
+  pageHeading = "Add new Article";
+  buttonCaption = "Create";
+  articleId: number = null;
+  formInNewMode: boolean = true;
+  sub;
    
 
  
-  constructor(private articleService: ArticleService) { }
+  constructor(private articleService: ArticleService, public route: ActivatedRoute) { 
+    this.sub = this.route.url.subscribe(params => {
+      if (params[1].path == 'edit') {
+        this.articleId = Number.parseInt(params[2].path);
+        this.pageHeading = "Update Article";
+        this.buttonCaption = "Update";
+        this.formInNewMode = false;
+      }
+
+    })
+
+  }
 
 
   ngOnInit() {
+    if (this.articleId != null) {
+      this.articleService.getArticle(this.articleId).subscribe(
+        (data) => {
+          this.article = data;
+        }, (error) => {
+        }
+      )
+    }
+
   }
 
   newArticle(): void {
@@ -32,22 +58,26 @@ export class AddNewArtilceComponent implements OnInit {
   save() {
 
 
-    this.articleService.createArticle(this.article)
+    this.articleService.saveArticle(this.article, this.articleId)
       .subscribe((data) => {
         console.log(data);
-        this.success = JSON.parse(JSON.stringify(data)).ok;
+        this.success = JSON.parse(JSON.stringify(data)).success;
         this.message = JSON.parse(JSON.stringify(data)).message;
-        this.article = new Article();
+        if (this.formInNewMode){
+            this.article = new Article();
+        }
+        
       }, (error) => {
       //  this.response = new Response(error);
        // this.response = error;
         //console.log(error.error.errors);
 
-        this.failed = !JSON.parse(JSON.stringify(error.error)).ok;
-
+        this.failed = !JSON.parse(JSON.stringify(error.error)).success;
+        this.message = JSON.parse(JSON.stringify(error)).message;
+        /*
         error.error.errors.forEach(element => {
           this.message += element.defaultMessage + "<br/>";
-        });
+        });*/
         //this.message = JSON.parse(JSON.stringify(error.error)).message;
       });
      // console.log("========================");
@@ -66,6 +96,10 @@ export class AddNewArtilceComponent implements OnInit {
     this.failed = false;
     this.message = "";
     this.save();
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

@@ -47,7 +47,10 @@ public class BlogPostService {
 	@Transactional
 	public ResponseEntity<?> createNewBlogPost(BlogPostRequest blogPostRequest, UserPrincipal currentUser){
 		Article blogPost = blogPostRepository.save(blogPostDomainService.createNewBlogPost(blogPostRequest, currentUser)); 
-		return new ResponseEntity<Article>(blogPost, HttpStatus.OK); 		
+		//return new ResponseEntity<Article>(blogPost, HttpStatus.OK); 		
+		return new ResponseEntity<ApiResponse>(
+				new ApiResponse(true, "Article added successfully!", blogPost),
+				HttpStatus.CREATED);
 	}
 	
 	/**
@@ -81,7 +84,7 @@ public class BlogPostService {
 		Article blogPost = blogPostRepository.findById(postId).orElse(null);
 		Article updateResult = null;
 		if (blogPost == null) {
-			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Customer not found!"), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Post not found!"), HttpStatus.BAD_REQUEST);
 		}
 		
 		
@@ -102,7 +105,7 @@ public class BlogPostService {
 				}
 			}	
 			return new ResponseEntity<ApiResponse>(
-					new ApiResponse(true, "Article record is updated successfully!"),
+					new ApiResponse(true, "Article status has been updated successfully!"),
 					HttpStatus.OK);
 		} else {
 			return new ResponseEntity<ApiResponse>(
@@ -140,11 +143,11 @@ public class BlogPostService {
 					System.out.println(ex.getStackTrace());
 				}
 			}			
-			/*return new ResponseEntity<ApiResponse>(
-					new ApiResponse(true, "Article record is updated successfully!"),
-					HttpStatus.OK);*/
+			return new ResponseEntity<ApiResponse>(
+					new ApiResponse(true, "Article is updated successfully!"),
+					HttpStatus.OK);
 			
-			return new ResponseEntity<Article>(blogPost, HttpStatus.OK); 	
+			//return new ResponseEntity<Article>(blogPost, HttpStatus.OK); 	
 			
 		} else {
 			return new ResponseEntity<ApiResponse>(
@@ -165,4 +168,29 @@ public class BlogPostService {
 		return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);		
 	}
 	
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public ResponseEntity<?> getArticle(Long id) {
+		Optional<Article> result = blogPostRepository.findById(id);
+		if (result.isPresent())
+			return new ResponseEntity<Article>(result.get(), HttpStatus.OK);
+		else
+			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Specified article is not available!"),
+					HttpStatus.BAD_REQUEST);
+	}
+	
+	public ResponseEntity<?> getAllArticles(){
+		List<Article> articles = blogPostRepository.findAllByOrderByIdDesc();
+		return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);		
+	}
+	
+	public ResponseEntity<?> getAllArticlesByStatus(Integer status){
+		List<Article> articles = blogPostRepository.findAllByStatusOrderByIdDesc(Helper.fromIntStatus(status));
+		return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);		
+	}
+
 }

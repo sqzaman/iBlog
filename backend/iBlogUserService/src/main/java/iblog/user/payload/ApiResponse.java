@@ -1,4 +1,4 @@
-package iblog.customers.payload;
+package iblog.user.payload;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

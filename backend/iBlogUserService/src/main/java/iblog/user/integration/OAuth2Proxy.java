@@ -1,4 +1,4 @@
-package iblog.customers.integration;
+package iblog.user.integration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import iblog.customers.payload.AccountRequest;
 import iblog.user.dto.AccountDto;
+import iblog.user.payload.AccountRequest;
 
 @Component
 public class OAuth2Proxy {

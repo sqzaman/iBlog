@@ -1,4 +1,4 @@
-package iblog.customers.payload;
+package iblog.user.payload;
 
 import javax.validation.constraints.*;
 

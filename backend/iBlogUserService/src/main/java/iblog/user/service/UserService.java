@@ -7,14 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import iblog.customers.integration.OAuth2Proxy;
-import iblog.customers.payload.AccountRequest;
-import iblog.customers.payload.ApiResponse;
-import iblog.customers.payload.UserSignUpRequest;
-import iblog.customers.payload.CustomerUpdateRequest;
 import iblog.security.UserPrincipal;
 import iblog.user.domain.User;
 import iblog.user.dto.AccountDto;
+import iblog.user.integration.OAuth2Proxy;
+import iblog.user.payload.AccountRequest;
+import iblog.user.payload.ApiResponse;
+import iblog.user.payload.CustomerUpdateRequest;
+import iblog.user.payload.UserSignUpRequest;
 import iblog.user.repository.UserRepository;
 
 

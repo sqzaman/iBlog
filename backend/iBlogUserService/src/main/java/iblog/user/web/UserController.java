@@ -14,12 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import iblog.customers.payload.UserSignUpRequest;
-
-import iblog.customers.payload.CustomerUpdateRequest;
 import iblog.security.CurrentUser;
 import iblog.security.UserPrincipal;
+import iblog.user.payload.CustomerUpdateRequest;
+import iblog.user.payload.UserSignUpRequest;
 import iblog.user.service.UserService;
 
 @RestController

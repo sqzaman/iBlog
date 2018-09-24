@@ -9,8 +9,6 @@ import { AdminComponent } from './admin/admin.component';
 import { NewCategoryComponent } from './admin-product-category/new-category/new-category.component';
 import { NewProductComponent } from './admin-product/new-product/new-product.component';
 import { UploadProductImageComponent } from './admin-product/upload-product-image/upload-product-image.component';
-import { AdminAllArticleComponent } from './admin-all-article/admin-all-article.component';
-import { AdminApprovalNeedArticleComponent } from './admin-approval-need-article/admin-approval-need-article.component';
 
 @NgModule({
   imports: [
@@ -18,6 +16,6 @@ import { AdminApprovalNeedArticleComponent } from './admin-approval-need-article
     FormsModule,
     RouterModule
   ],
-  declarations: [AdminOverviewComponent, AdminProductComponent, AdminProductCategoryComponent, AdminComponent, NewCategoryComponent, NewProductComponent, UploadProductImageComponent, AdminAllArticleComponent, AdminApprovalNeedArticleComponent]
+  declarations: [AdminOverviewComponent, AdminProductComponent, AdminProductCategoryComponent, AdminComponent, NewCategoryComponent, NewProductComponent, UploadProductImageComponent]
 })
 export class AdminModule { }

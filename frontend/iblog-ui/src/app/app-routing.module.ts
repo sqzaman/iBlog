@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ViewChild } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingPageComponent } from './modules/home/components/landing-page/landing-page.component';
 import { ProductsComponent } from './modules/products/components/products/products.component';
@@ -22,19 +22,17 @@ import { UploadProductImageComponent } from './modules/admin/admin-product/uploa
 
 import { MyArticlesComponent } from './modules/authentication/components/profile/my-articles/my-articles.component';
 import { AddNewArtilceComponent } from './modules/authentication/components/profile/add-new-artilce/add-new-artilce.component';
-
-import { AdminAllArticleComponent } from './modules/admin/admin-all-article/admin-all-article.component';
-import { AdminApprovalNeedArticleComponent } from './modules/admin/admin-approval-need-article/admin-approval-need-article.component';
+import {ViewArticleComponent} from './modules/article/view-article/view-article.component';
 
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'home',
         component: LandingPageComponent
     },
     {
-        path: 'home',
-        component: LandingPageComponent
+        path: 'articles/:id',
+        component: ViewArticleComponent
     },
     {
         path: 'products',
@@ -72,9 +70,8 @@ const routes: Routes = [
             { path: 'overview', component: ProfileOverviewComponent },
             { path: 'edit', component: ProfileEditComponent },
             { path: 'my-articles', component: MyArticlesComponent },
-            { path: 'article/new', component: AddNewArtilceComponent },
-            { path: 'article/edit/:id', component: AddNewArtilceComponent },
-            { path: '', redirectTo:'overview', pathMatch:"full" }
+            { path: 'add-new-article', component: AddNewArtilceComponent },
+            { path: '', redirectTo: 'overview', pathMatch: 'full' }
         ]
     }
     ,
@@ -83,8 +80,6 @@ const routes: Routes = [
         component: AdminComponent,
         children: [
             { path: 'overview', component: AdminOverviewComponent },
-            { path: 'article/all', component: AdminAllArticleComponent },
-            { path: 'articles/approval-need', component: AdminApprovalNeedArticleComponent },
             { path: 'product', component: AdminProductComponent },
             { path: 'product/new', component: NewProductComponent },
             { path: 'product/edit/:id', component: NewProductComponent },
@@ -92,7 +87,7 @@ const routes: Routes = [
             { path: 'product-category', component: AdminProductCategoryComponent },
             { path: 'product-category/new', component: NewCategoryComponent },
             { path: 'product-category/edit/:id', component: NewCategoryComponent },
-            { path: '', redirectTo:'overview', pathMatch:"full" }
+            { path: '', redirectTo: 'overview', pathMatch: 'full' }
         ]
     }
 ];

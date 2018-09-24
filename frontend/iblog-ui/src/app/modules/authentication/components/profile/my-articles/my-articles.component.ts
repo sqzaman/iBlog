@@ -20,5 +20,4 @@ export class MyArticlesComponent implements OnInit {
     )
   }
 
-
 }

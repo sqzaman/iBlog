@@ -35,13 +35,12 @@ public class Article {
 	 * @param status
 	 * @param blogger
 	 */
-	public Article(Long id, String title, String body, Status status, Author author) {
-		this.id = id;
+	public Article(Long postId, String title, String body, Status status, Author blogger) {
+		this.id = postId;
 		this.title = title;
 		this.body = body;
 		this.status = status;
-		this.author = author;
-
+		this.author = blogger;
 	}
 
 	public String getTitle() {
@@ -68,24 +67,19 @@ public class Article {
 		this.status = status;
 	}
 
-
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Author getAuthor() {
+	public Author getBlogger() {
 		return author;
 	}
 
-	public void setAuthor(Author author) {
-		this.author = author;
+	public void setBlogger(Author blogger) {
+		this.author = blogger;
+	}	
+	public void setPostId(Long postId) {
+		this.id = postId;
 	}
-
+	public Long getPostId() {
+		return id;
+	}
 	public Date getPostDate() {
 		return postDate;
 	}

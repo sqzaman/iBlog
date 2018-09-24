@@ -192,5 +192,29 @@ public class BlogPostService {
 		List<Article> articles = blogPostRepository.findAllByStatusOrderByIdDesc(Helper.fromIntStatus(status));
 		return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);		
 	}
+	
+	public ResponseEntity<?> getUserArticleById(Long postId, UserPrincipal currentUser){
+		Article article = blogPostRepository.findById(postId).orElse(null);
+		if (article == null) {
+			return new ResponseEntity<ApiResponse>(
+					new ApiResponse(false,
+							"Post not found!"),
+					HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Article>(article, HttpStatus.OK);		
+	}
+	
+	public ResponseEntity<?> getCommentsByPostId(Long postId, UserPrincipal currentUser){
+		Article article = blogPostRepository.findById(postId).orElse(null);
+		List<Comment> comments = commentRepository.findAllByBlogPost(article);
+		if (comments == null) {
+			return new ResponseEntity<ApiResponse>(
+					new ApiResponse(false,
+							"Comments not found!"),
+					HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<List<Comment>>(comments, HttpStatus.OK);		
+	}
+	
 
 }

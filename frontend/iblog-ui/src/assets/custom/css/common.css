@@ -33,21 +33,3 @@ body {
     font-style: italic;
     color: grey;
 }
-
-.total-article-count{
-    display: inline-block;
-    background-color: dodgerblue;
-    width: 25px;
-    text-align: center;
-    color: white;
-    border-radius: 14px;
-}
-
-.total-unapproved-article-count {
-    display: inline-block;
-    background-color: #FF0000;
-    width: 25px;
-    text-align: center;
-    color: white;
-    border-radius: 14px;
-}

@@ -1,0 +1,19 @@
+server:
+  port: 8080
+  
+zuul:
+  prefix: /api
+  sensitiveHeaders:
+  routes:
+    oauth:
+      path: /oauth/**
+      serviceId: iBlogOAuth2Service 
+    core:
+      path: /blog/**
+      serviceId: iBlogCoreService
+    user:
+      path: /user/**
+      serviceId: iBlogUserService
+    search:
+      path: /search/**
+      serviceId: iBlogSearchService

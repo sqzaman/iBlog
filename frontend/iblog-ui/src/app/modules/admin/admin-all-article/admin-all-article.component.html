@@ -1,8 +1,8 @@
 <div class="container">
     <h2 style="padding: 20px;">Articles need approval</h2>
     <hr />
-    <div class="jumbotron" *ngFor="let article of articles" id="article-id-{{article.id}}">
-      <h3 class="display-7">    {{article.title}}
+    <div class="jumbotron" *ngFor="let article of articles" id="article-id-{{article?.id}}">
+      <h3 class="display-7"> <a href="/article/{{article?.id}}"> {{article.title}}</a>   
         <span *ngIf="article.status=='APPROVED'" class="badge badge-success article-status">{{article.status}}</span>
         <span *ngIf="article.status=='CREATED'" class="badge badge-warning article-status">{{article.status}}</span>
         <span *ngIf="article.status=='PENDING'" class="badge badge-secondary article-status">{{article.status}}</span>
@@ -13,7 +13,7 @@
       <p class="article-body">{{ (article.body.length > 300)? (article.body | slice:0:300)+'..':(article.body) }}</p>
       <hr class="my-4">
         <p class="lead">
-        <a class="btn btn-primary" href="#" role="button">Read more</a>      
+        <a class="btn btn-primary" href="/article/{{article?.id}}" role="button">Read more</a>      
 
       </p>
     </div>

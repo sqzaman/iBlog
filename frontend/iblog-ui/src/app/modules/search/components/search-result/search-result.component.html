@@ -29,7 +29,7 @@
     <div class="col-md-12">
 
       <div class="alert alert-success" style="background-color: white" role="alert" *ngFor="let article of searchResult?.hits.hits">
-        <h4 class="alert-heading article-title">{{article?._source?.title}}</h4>
+        <h4 class="alert-heading article-title"><a href="/article/{{article?._source?.id}}">{{article?._source?.title}}</a></h4>
         <p class="author-and-postdate">
           <span>Author: {{article?._source?.author}}</span> &nbsp;
           <span>Post Date: {{article?._source?.publishedDate}}</span>
@@ -40,7 +40,7 @@
         </p>
         <hr>
         <p class="mb-0">
-          <a style="float: right" class="btn btn-primary" href="#" role="button">Read more</a>
+          <a style="float: right" class="btn btn-primary" href="/article/{{article?._source?.id}}" role="button">Read more</a>
         </p>
         <div style="clear: both"></div>
       </div>

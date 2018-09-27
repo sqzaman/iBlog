@@ -16,11 +16,8 @@ export class UserProfileService {
   }
 
   updateProfile(userProfile: Object ): Observable<Object> {
-    return this.http.post(this.globals.BASE_API_URL + "customer/update", userProfile);
+    return this.http.post(this.globals.BASE_API_URL + "user/update", userProfile);
   }
 
-  updateBillingAddress(billingAddress: Object ): Observable<Object> {
-    return this.http.post(this.globals.BASE_API_URL + "customer/addAddress", billingAddress);
-  }
 
 }

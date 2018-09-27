@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import iblog.security.CurrentUser;
 import iblog.security.UserPrincipal;
-import iblog.user.payload.CustomerUpdateRequest;
+import iblog.user.payload.UserUpdateRequest;
 import iblog.user.payload.UserSignUpRequest;
 import iblog.user.service.UserService;
 
@@ -24,11 +24,11 @@ import iblog.user.service.UserService;
 public class UserController {
 	
 	@Autowired
-	UserService customerService;
+	UserService userService;
 	
 	@PostMapping(value = "/signup")
 	public ResponseEntity<?> addCustomer(@Valid @RequestBody UserSignUpRequest authorSignUpRequest) {
-		return customerService.createAccount(authorSignUpRequest);
+		return userService.createAccount(authorSignUpRequest);
 	}
 	
     @GetMapping("/getRole")
@@ -38,13 +38,13 @@ public class UserController {
 	
 	@PostMapping(value = "/update")
 	@PreAuthorize("hasRole('USER')")
-	public ResponseEntity<?> updateCustomer(@Valid @RequestBody CustomerUpdateRequest customerUpdateRequest, @CurrentUser UserPrincipal currentUser) {
-		return customerService.updateCustomert(customerUpdateRequest, currentUser);
+	public ResponseEntity<?> updateUser(@Valid @RequestBody UserUpdateRequest customerUpdateRequest, @CurrentUser UserPrincipal currentUser) {
+		return userService.updateUser(customerUpdateRequest, currentUser);
 	}	
 
 	@GetMapping("/get")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-	public ResponseEntity<?> getCustomer(@CurrentUser UserPrincipal currentUser) {
-		return customerService.getCustomer(currentUser);
+	public ResponseEntity<?> getUser(@CurrentUser UserPrincipal currentUser) {
+		return userService.getUser(currentUser);
 	}
 }

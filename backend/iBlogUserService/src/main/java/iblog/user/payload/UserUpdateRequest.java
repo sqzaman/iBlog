@@ -5,10 +5,10 @@ import javax.validation.constraints.*;
 import org.springframework.core.annotation.Order;
 
 
-public class CustomerUpdateRequest {
+public class UserUpdateRequest {
 	
     @NotBlank(message = "Firstname cannot be empty!")
-    @Size(min = 4, max = 40)
+    @Size(min = 3, max = 40)
     @Order(1)
     private String firstname;
     
@@ -16,10 +16,6 @@ public class CustomerUpdateRequest {
     @Size(min = 4, max = 40)
     @Order(2)
     private String lastname;
-      
-    @NotBlank(message = "Phone cannot be empty!")
-    @Size(max = 40)
-    private String phone;
 
 
 	
@@ -39,13 +35,6 @@ public class CustomerUpdateRequest {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	
-	public String getPhone() {
-		return phone;
-	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
 
 }

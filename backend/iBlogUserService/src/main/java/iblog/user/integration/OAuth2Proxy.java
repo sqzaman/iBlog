@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+//import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 import iblog.user.dto.AccountDto;
 import iblog.user.payload.AccountRequest;
 
@@ -29,6 +31,7 @@ public class OAuth2Proxy {
 	
 	@FeignClient("iBlogOAuth2Service")
 	//@RibbonClient(name="iBlogOAuth2Service")
+	//@HystrixCommand(fallbackMethod = "myFallBack")
 	interface OAuth2FeignClient {
 		
 		@RequestMapping(value="/auth/signup",method=RequestMethod.POST)

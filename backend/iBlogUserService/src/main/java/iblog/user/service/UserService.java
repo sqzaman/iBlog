@@ -13,7 +13,7 @@ import iblog.user.dto.AccountDto;
 import iblog.user.integration.OAuth2Proxy;
 import iblog.user.payload.AccountRequest;
 import iblog.user.payload.ApiResponse;
-import iblog.user.payload.CustomerUpdateRequest;
+import iblog.user.payload.UserUpdateRequest;
 import iblog.user.payload.UserSignUpRequest;
 import iblog.user.repository.UserRepository;
 
@@ -57,7 +57,7 @@ public class UserService {
 		}
 	}
 
-	public ResponseEntity<?> updateCustomert(CustomerUpdateRequest customerUpdateRequest, UserPrincipal currentUser) {
+	public ResponseEntity<?> updateUser(UserUpdateRequest customerUpdateRequest, UserPrincipal currentUser) {
 		User user = userRepository.findByEmail(currentUser.getEmail());
 		User updateResult = null;
 		if (user == null) {
@@ -73,7 +73,7 @@ public class UserService {
 			URI location = ServletUriComponentsBuilder.fromCurrentContextPath()
 					.path("/customer/" + updateResult.getId()).buildAndExpand(updateResult.getId()).toUri();
 
-			return ResponseEntity.created(location).body(new ApiResponse(true, "Customer record is updated successfully!"));
+			return ResponseEntity.created(location).body(new ApiResponse(true, "User record is updated successfully!"));
 
 		} else {
 			return new ResponseEntity<ApiResponse>(
@@ -83,7 +83,7 @@ public class UserService {
 		}
 	}
 
-	public ResponseEntity<?> getCustomer(UserPrincipal currentUser) {
+	public ResponseEntity<?> getUser(UserPrincipal currentUser) {
 
 		User user = userRepository.findByEmail(currentUser.getEmail());
 		if (user != null) {

@@ -1,6 +1,9 @@
 package iblog.core.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -18,6 +21,8 @@ public class Article {
 	private Status status;
 	
 	private Author author;
+	
+	List<Comment> comments = new ArrayList<Comment>();
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss.SSS")
 	private Date postDate = new Date();
@@ -102,5 +107,20 @@ public class Article {
 		this.pushedToKafka = pushedToKafka;
 	}
 
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+	
+	public void addComment(Comment comment) {
+		this.comments.add(comment);
+	}
+
+	public void removeComment(Comment comment) {
+		this.comments.remove(comment);
+	}
 
 }

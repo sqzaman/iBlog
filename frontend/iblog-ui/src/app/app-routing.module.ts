@@ -26,6 +26,7 @@ import { AddNewArtilceComponent } from './modules/authentication/components/prof
 import { AdminAllArticleComponent } from './modules/admin/admin-all-article/admin-all-article.component';
 import { AdminApprovalNeedArticleComponent } from './modules/admin/admin-approval-need-article/admin-approval-need-article.component';
 import { SearchResultComponent } from './modules/search/components/search-result/search-result.component';
+import { ArticleViewComponent } from './modules/article/article-view/article-view.component';
 
 const routes: Routes = [
     {
@@ -39,6 +40,10 @@ const routes: Routes = [
     {
         path: 'home',
         component: LandingPageComponent
+    },
+    {
+        path: 'article/:id',
+        component: ArticleViewComponent
     },
     {
         path: 'products',

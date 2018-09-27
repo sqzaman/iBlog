@@ -7,6 +7,10 @@ spring:
   security:
     basic:
       enabled: false
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
     
 logging:
   level:
@@ -27,5 +31,7 @@ kafka:
 app:
  jwtSecret: JWTSuperSecretKey
  jwtExpirationInMs: 604800000
+
+adminChannel: adminChannel
  
 

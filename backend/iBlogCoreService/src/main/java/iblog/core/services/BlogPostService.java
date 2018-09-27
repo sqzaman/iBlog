@@ -6,12 +6,14 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import iblog.core.domain.services.BlogPostDomainService;
 import iblog.core.domain.services.CommentDomainService;
+import iblog.core.integration.JmsSender;
 import iblog.core.integration.Sender;
 import iblog.core.model.Article;
 import iblog.core.model.Author;
@@ -25,9 +27,12 @@ import iblog.core.repository.CommentRepository;
 import iblog.core.util.Helper;
 import iblog.security.UserPrincipal;
 
+
 @Service
 public class BlogPostService {
-	
+	private static final String blogpostCreatedChannel = "blogpostCreatedChannel";
+	private static final String blogpostApprovedChannel = "blogpostApprovedChannel";
+
 	@Autowired
 	BlogPostRepository blogPostRepository;
 	@Autowired
@@ -38,6 +43,8 @@ public class BlogPostService {
 	CommentDomainService commentDomainService;
 	@Autowired
 	Sender kafkaSender;
+	@Autowired
+	private JmsSender jmsSender;
 	
 	/**
 	 * Create new blog post
@@ -47,10 +54,18 @@ public class BlogPostService {
 	@Transactional
 	public ResponseEntity<?> createNewBlogPost(BlogPostRequest blogPostRequest, UserPrincipal currentUser){
 		Article blogPost = blogPostRepository.save(blogPostDomainService.createNewBlogPost(blogPostRequest, currentUser)); 
-		//return new ResponseEntity<Article>(blogPost, HttpStatus.OK); 		
-		return new ResponseEntity<ApiResponse>(
-				new ApiResponse(true, "Article added successfully!", blogPost),
-				HttpStatus.CREATED);
+		//return new ResponseEntity<Article>(blogPost, HttpStatus.OK); 
+		if( blogPost != null) {
+			jmsSender.sendJMSMessage(blogpostCreatedChannel, String.format(" a new blog has been created, and waiting for apporval, blogId: %d", blogPost.getId()));
+			return new ResponseEntity<ApiResponse>(
+					new ApiResponse(true, "Article added successfully!", blogPost),
+					HttpStatus.CREATED);
+		} else {
+			return new ResponseEntity<ApiResponse>(
+					new ApiResponse(false, "Something went wrong, please check your data!"),
+					HttpStatus.BAD_REQUEST);
+		}
+
 	}
 	
 	/**
@@ -59,8 +74,13 @@ public class BlogPostService {
 	 * @return
 	 */
 	@Transactional
-	public ResponseEntity<?> addNewComment(CommentPostRequest commentPostRequest, UserPrincipal currentUser, Long postId){		
-		Comment newComment = commentRepository.save(commentDomainService.insertNewComment(commentPostRequest, currentUser, postId)); 
+	public ResponseEntity<?> addNewComment(CommentPostRequest commentPostRequest, UserPrincipal currentUser, Long postId){	
+		Article article = blogPostRepository.findById(postId).orElse(null);
+		
+		Comment newComment = commentDomainService.createNewComment(commentPostRequest, currentUser);
+		article.addComment(newComment);
+		blogPostRepository.save(article);
+
 		return new ResponseEntity<Comment>(newComment, HttpStatus.OK); 		
 	}
 	
@@ -100,6 +120,9 @@ public class BlogPostService {
 					// changing the status
 					blogPost.setPushedToKafka(true);
 					blogPostRepository.save(blogPost);
+					
+					jmsSender.sendJMSMessage(blogpostApprovedChannel , String.format("Hey %s your blog post approved by the admin, blogId: %d", blogPost.getAuthor().getName(), blogPost.getId()));
+					
 				} catch (Exception ex) {
 					System.out.println(ex.getStackTrace());
 				}

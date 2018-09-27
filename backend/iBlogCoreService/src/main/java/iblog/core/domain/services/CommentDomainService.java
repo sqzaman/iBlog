@@ -36,13 +36,12 @@ public class CommentDomainService {
 	@Autowired 
 	private MongoOperations mongo;
 	
-	public Comment insertNewComment(CommentPostRequest commentPostRequest, UserPrincipal currentUser, Long postId) {
-		Article blogPost = blogPostRepository.findById(postId).orElse(null);
-		Author a = new Author(currentUser.getId(), currentUser.getName());	
-		
+	public Comment createNewComment(CommentPostRequest commentPostRequest, UserPrincipal currentUser) {
+
+		Author author = new Author(currentUser.getId(), currentUser.getName());			
 		Long commentId = getNextSequenceId(HOSTING_SEQ_KEY);
 
-		return new Comment(commentId, commentPostRequest.getComment(), blogPost, a, new Comment());
+		return new Comment(commentId, commentPostRequest.getComment(), author);
 	}
 	
 	
@@ -50,12 +49,12 @@ public class CommentDomainService {
 		
 		Comment comment = commentRepository.findById(commentId).orElse(null);		
 		
-		Article blogPost = blogPostRepository.findById(comment.getBlogPost().getId()).orElse(null);
+		//Article blogPost = blogPostRepository.findById(comment.getBlogPost().getId()).orElse(null);
 		Author a = new Author(currentUser.getId(), currentUser.getName());	
 		
 		Long newCommentId = getNextSequenceId(HOSTING_SEQ_KEY);
-		
-		return new Comment(newCommentId, commentPostRequest.getComment(), blogPost, a, comment);
+		return null;
+		//return new Comment(newCommentId, commentPostRequest.getComment(), blogPost, a, comment);
 	}
 	
 	

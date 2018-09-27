@@ -19,7 +19,6 @@ import iblog.security.CurrentUser;
 import iblog.security.UserPrincipal;
 
 @RestController
-//@Profile("One")
 public class BlogPostController {
 	
 	@Autowired

@@ -16,35 +16,31 @@ public class Comment {
 	@Id	
 	private Long id;
 	
-	private String comment;
+	private String message;
 	
-	private Article blogPost;
-	
+
 	private Author author;	
 	
 	private Comment parent;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss.SSS")
-	private Date postDate;
+	private Date commentDate = new Date();
 	
 	public Comment() {
 		super();
 	}
 
-	public Comment(Long id, String comment, Article blogPost, Author author, Comment parent) {
+	public Comment(Long id, String message, Author author) {
 		super();
 		this.id = id;
-		this.comment = comment;
-		this.blogPost = blogPost;
+		this.message = message;
 		this.author = author;
-		this.parent = parent;	
 	}
 
 	
-	public Comment(String comment, Article blogPost, Author author, Comment parent) {
+	public Comment(String comment, Author author, Comment parent) {
 		super();
-		this.comment = comment;
-		this.blogPost = blogPost;
+		this.message = comment;
 		this.author = author;
 		this.parent = parent;
 	}
@@ -57,21 +53,23 @@ public class Comment {
 		this.id = id;
 	}
 
-	public String getComment() {
-		return comment;
+
+	public String getMessage() {
+		return message;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
-	public Article getBlogPost() {
-		return blogPost;
+	public Date getCommentDate() {
+		return commentDate;
 	}
 
-	public void setBlogPost(Article blogPost) {
-		this.blogPost = blogPost;
+	public void setCommentDate(Date commentDate) {
+		this.commentDate = commentDate;
 	}
+
 
 	public Author getAuthor() {
 		return author;
@@ -89,13 +87,6 @@ public class Comment {
 		this.parent = parent;
 	}
 
-	public Date getPostDate() {
-		return postDate;
-	}
-
-	public void setPostDate(Date postDate) {
-		this.postDate = postDate;
-	}
 	
 	
 }

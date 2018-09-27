@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Globals } from '../../../shared/config/globals.service';
 import { Article } from '../../authentication/components/profile/model/article';
+import { PostComment } from '../../article/models/post-comment';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,15 @@ export class ArticleService {
     let url = "";
     url = this.globals.BASE_API_URL + "blog/approve/" + postId + "/" + status;
     return this.http.post(url, null);
+  }
+
+  getArticles(id: number): Observable<Object> {
+    return this.http.get(this.globals.BASE_API_URL + 'blog/get/' + id);
+  }
+
+  
+  postComment(postComment: PostComment, articleId): Observable<Object> {
+    let url = this.globals.BASE_API_URL + "blog/add-comment/" + articleId;
+    return this.http.post(url, postComment);
   }
 }

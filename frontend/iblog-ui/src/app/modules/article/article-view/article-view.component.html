@@ -1,0 +1,59 @@
+<div class="container">
+
+<br />
+
+
+<div class="row justify-content-center">
+  <div class="col-md-12">
+
+
+    <div class="jumbotron">
+      <h2 class="" id="title">{{article?.title}}</h2>
+      <p id="author" style="font-style: italic">Author: {{article?.author.name}}</p>
+      <p id="post-date" style="font-style: italic">Post date: {{article?.postDate}}</p>
+      <p class="">{{article?.body}}</p>
+      
+    </div>
+
+  
+    <div class="alert alert-success" role="alert" >
+      <h4 class="alert-heading">Comments..</h4>
+      <div id="comment-container">
+      <div *ngFor="let comment of article?.comments">
+          <p [attr.data-letters]="comment.author.name.charAt(0)"> {{comment?.author.name }} <span style="float: right;"> Date: {{comment.commentDate }}</span></p>
+<p style="clear: both;"></p>
+          <p>{{comment?.message}}</p>
+        <hr>
+
+      </div>
+    </div>
+     
+    </div>
+
+    <div class="alert alert-success" role="alert" *ngIf="userLoggedIn">
+        <h4 class="alert-heading">Add new comment</h4>
+       
+        <form (ngSubmit)="onSubmit()">
+            <!-- form-row end.// -->
+    
+            <div class="form-row">
+              <div class="col form-group">
+                <label>Comment</label>
+                <textarea [(ngModel)]="postComment.comment" id="body" name="body" cols="40" rows="4" class="form-control"></textarea>
+              </div>
+              <!-- form-group end.// -->
+            </div>
+            <hr />
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block"> Post  </button>
+            </div>
+           
+          </form>
+   
+       
+      </div>
+
+
+  </div>
+</div>
+</div>

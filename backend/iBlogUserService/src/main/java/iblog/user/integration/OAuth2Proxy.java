@@ -28,6 +28,7 @@ public class OAuth2Proxy {
 	};
 	
 	@FeignClient("iBlogOAuth2Service")
+	//@RibbonClient(name="iBlogOAuth2Service")
 	interface OAuth2FeignClient {
 		
 		@RequestMapping(value="/auth/signup",method=RequestMethod.POST)

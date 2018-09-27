@@ -17,6 +17,7 @@ import iblog.oauth2.service.UserService;
 
 @RestController
 @RequestMapping("/auth")
+// @Profile("One") // for running multiple instances, testing client side load balancing using ribbon
 public class AuthController {    
     
     @Autowired

@@ -3,6 +3,7 @@ package iblog.core.web;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import iblog.security.CurrentUser;
 import iblog.security.UserPrincipal;
 
 @RestController
+//@Profile("One")
 public class BlogPostController {
 	
 	@Autowired

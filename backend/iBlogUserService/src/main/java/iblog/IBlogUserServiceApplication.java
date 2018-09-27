@@ -14,10 +14,10 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
-public class WebShopApplication  {
+public class IBlogUserServiceApplication  {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebShopApplication.class, args);
+		SpringApplication.run(IBlogUserServiceApplication.class, args);
 	}
 
 	@Bean
